@@ -1,0 +1,35 @@
+[
+  {
+    "title": "Our Company",
+    "navLinks": [
+      {
+        "name": "Careers",
+        "path": "/categories"
+      },
+      {
+        "name": "Complaints Procedure",
+        "path": "/categories"
+      },
+      {
+        "name": "Privacy policy",
+        "path": "/categories"
+      },
+      {
+        "name": "Press Enquiries",
+        "path": "/categories"
+      },
+      {
+        "name": "Delivery Information",
+        "path": "/categories"
+      },
+      {
+        "name": "Site Map",
+        "path": "/categories"
+      },
+      {
+        "name": "Terms and Conditions",
+        "path": "/categories"
+      }
+    ]
+  }
+]

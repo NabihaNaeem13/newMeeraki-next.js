@@ -1,0 +1,36 @@
+[
+    {
+      "title": "Popular Treatments",
+      "navLinks": [
+        {
+          "name": "Laser Hair Removal",
+          "path": "/about"
+        },
+        {
+          "name": "Hydrafacial",
+          "path": "/faq"
+        },
+        {
+          "name": "Scalp Mesotherapy",
+          "path": "/about"
+        },
+        {
+          "name": "Fat Freezing",
+          "path": "/blog"
+        },
+        {
+          "name": "LPG Endermologie",
+          "path": "/about"
+        },
+        {
+          "name": "Deluxe Facials",
+          "path": "/about"
+        },
+        {
+          "name": "Derma Fillers",
+          "path": "/about"
+        }
+      ]
+    }
+  ]
+  

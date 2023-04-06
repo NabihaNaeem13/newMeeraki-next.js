@@ -1,0 +1,32 @@
+[
+    {
+        "id":1,
+        "image":"/DermaestheticsAssests/1 Homepage/images/imgcate4.png",
+        "name":"Hair Rejucvenation"
+    },
+    {
+        "id":2,
+        "image":"/DermaestheticsAssests/1 Homepage/images/imgcate1.png",
+        "name":"Body treatments"
+    },
+    {
+        "id":3,
+        "image":"/DermaestheticsAssests/1 Homepage/images/imgcate3.png",
+        "name":"Laser Hair Removal"
+    },
+    {
+        "id":4,
+        "image":"/DermaestheticsAssests/1 Homepage/images/imgcate2.png",
+        "name":"Skin Peel Treatments"
+    },
+    {
+        "id":1,
+        "image":"/DermaestheticsAssests/1 Homepage/images/imgcate4.png",
+        "name":"Hair Rejucvenation"
+    },
+    {
+        "id":2,
+        "image":"/DermaestheticsAssests/1 Homepage/images/imgcate1.png",
+        "name":"Body treatments"
+    }
+]

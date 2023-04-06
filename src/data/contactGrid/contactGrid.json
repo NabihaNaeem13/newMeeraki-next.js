@@ -1,0 +1,17 @@
+[
+    {
+      "icon": "/DermaestheticsAssests/1 Homepage/Icons & Logo/mobilegrey.svg",
+      "title": "Body your free in-clinic,phone or video consulation",
+      "buttonValue":"Book Consulation"
+    },
+    {
+      "icon": "/DermaestheticsAssests/1 Homepage/Icons & Logo/phonegrey.svg",
+      "title": "Call us today",
+      "buttonValue":"Call Now"
+    },
+    {
+      "icon": "/DermaestheticsAssests/1 Homepage/Icons & Logo/locationgrey.svg",
+      "title": "Visit our clinic in London",
+      "buttonValue":"Wher to find us!"
+    }
+  ]
