@@ -16,7 +16,7 @@ export const NewArrivals = (props) => {
         />
 
         <div className='products-items'>
-          <ProductsCarousel products={newArrival} />
+          <ProductsCarousel products={props.products} />
         </div>
       </section>
       {/* <!-- NEW ARRIVALS EOF --> */}

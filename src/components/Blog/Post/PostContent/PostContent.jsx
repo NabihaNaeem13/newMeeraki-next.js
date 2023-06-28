@@ -1,62 +1,31 @@
 import Link from 'next/link';
 
-export const PostContent = ({ blog }) => {
+export const PostContent = ({blog}) => {
+  const {banner,long_description,created_at,meta_title}=blog;
   return (
     <>
       <div className='post-top'>
         <h2>{blog.title}</h2>
         <p>{blog.subTitle}</p>
-        <img src={blog.image} className='js-img' alt='' />
+        <img src={`https://meeraki.com/public/${banner}`} className='js-img' alt='' />
         <ul className='post-top__info'>
           <li className='post-top__date'>
             <i className='icon-date'></i>
-            {blog.date?.month} {blog.date.date}, {blog.date.year}
-          </li>
-          <li className='post-top__user'>
-            <i className='icon-user2'></i>
-            <a href='#/'>by {blog.authorName}</a>
-          </li>
-          <li className='post-top__watch'>
-            <i className='icon-eye'></i>
-            {blog.totalWatchCount}
-          </li>
-          <li className='post-top__comment'>
-            <i className='icon-comment'></i>
-            {blog.totalCommentCount}
+           {created_at}
           </li>
         </ul>
       </div>
       <div className='post-content'>
-        <p>{blog.content}</p>
+        <p><div
+      dangerouslySetInnerHTML={{__html: long_description}}/></p>
 
-        <h6>{blog.titleTwo}</h6>
-        <p>{blog.contentTwo}</p>
-        <blockquote className='blockquote'>
-          “{blog.quote.content}”
-          <span className='blockquote-author'>{blog.quote.author}</span>
-        </blockquote>
-        <ul className='post-list'>
-          {blog.postList.map((list, index) => (
-            <li key={index}>
-              <span>{list.title}</span>
-              {list.content}
-            </li>
-          ))}
-        </ul>
-        <p className='mt-4'>{blog.contentThree}</p>
       </div>
       <div className='post-bottom'>
         <div className='post-bottom__info'>
           <div className='post-bottom__tags'>
             <span>Tags:</span>
             <ul>
-              {blog.tags.map((tag, index) => (
-                <li key={index}>
-                  <Link href='#/'>
-                    <a>{tag.title}</a>
-                  </Link>
-                </li>
-              ))}
+            {meta_title}
             </ul>
           </div>
           <div className='contacts-info__social'>
@@ -85,7 +54,28 @@ export const PostContent = ({ blog }) => {
             </ul>
           </div>
         </div>
-        <div className='post-bottom__nav'>
+      </div>
+    </>
+  );
+};
+
+/*
+   {blog.postList.map((list, index) => (
+            <li key={index}>
+              <span>{list.title}</span>
+              {list.content}
+            </li>
+          ))}
+
+           {blog.tags.map((tag, index) => (
+                <li key={index}>
+                  <Link href='#/'>
+                    <a>{tag.title}</a>
+                  </Link>
+                </li>
+              ))}
+
+                <div className='post-bottom__nav'>
           <a href='#/'>
             <i className='icon-arrow'></i>previous post
           </a>
@@ -93,7 +83,4 @@ export const PostContent = ({ blog }) => {
             next post<i className='icon-arrow'></i>
           </a>
         </div>
-      </div>
-    </>
-  );
-};
+*/

@@ -6,15 +6,15 @@ export const SingleProduct = ({
   onAddToCart,
   addedInCart,
 }) => {
-  const { name, oldPrice, price, image, isSale, isNew, id } = product;
+  const { name,thumbnail_image,hover_image,base_price,id,category_name,current_price,product_sku,current_stock,variant} = product;
   return (
     <>
       {/* <!-- BEING SINGLE PRODUCT ITEM --> */}
       <div className='products-item'>
         <div className='products-item__img' style={{border:"2px solid #dddd"}}>
-        <img src={image}  alt='' />
+        <img src={`https://meeraki.com/public/${thumbnail_image}`}  alt='' />
           <div className='products-item__hover'>
-            <Link href={`/product/${id}`}>
+            <Link href={`/signal_product/${id}`}>
               <a>
                 <i className='icon-search'></i>
               </a>
@@ -34,17 +34,17 @@ export const SingleProduct = ({
           </div>
         </div>
         <div className='products-item__info'>
-          <Link href={`/product/${id}`}>
+          <Link href={`/signal_product/${id}`}>
             <a>
               <span className='products-item__name' style={{color: "#999999"}}>{name}</span>
             </a>
           </Link>
           <span className='products-item__cost'>
-            <span>{oldPrice && `$${oldPrice}`}</span> ${price}
+            {base_price}
           </span>
         </div>
       </div>
-      {/* <!-- SINGLE PRODUCT ITEM EOF --> */}
+      {/* <!-- SINGLE PRODUCT ITEM EOF <span>{current_price && `$${current_price}`}</span> --> */}
     </>
   );
 };

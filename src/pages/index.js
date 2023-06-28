@@ -11,23 +11,23 @@ import { Layout } from 'layout/Layout';
 import {PopularTreatments} from "components/landing/PopularTreatment/PopularTreatments.jsx";
 import ShopProduct from 'components/landing/ShopProduct/ShopProduct';
 import BookNow from 'components/landing/BookNow/BookNow';
-import {ContactGrid} from "components/landing/contactGrid/ContactGrid";
-import GetSolution from 'components/landing/GetSolution/GetSolution';
+import { useProductContext } from 'Context/ProductContext';
+import { VideoPromo } from 'components/landing/VideoPromo/VideoPromo';
 
 export default function Home() {
+  const {NewArrivalProduct,formalEdit,featureProduct,Banners,Blog,HomeImage4,ImageTwo}=useProductContext();
   return (
     <Layout>
-      <Banner />
-      <Advantage />
-      <ShopProduct/>
-      <NewArrivals title="New Arrival Products"/>
-      <PopularTreatments title="Our Popular Treatments"/>
-      <Info />
-      <BookNow/>
-      <Trending />
-      <LatestNews />
-      <ContactGrid/>
-      <GetSolution/>
+      <Banner banners={Banners}/>
+      <Advantage/>
+      <NewArrivals title="New Arrival Products" products={NewArrivalProduct}/>
+      <ShopProduct HomeImage4={HomeImage4}/>
+      <VideoPromo/>
+      <NewArrivals title="Featured Products" products={featureProduct}/>
+      <BookNow HomeImage4={HomeImage4}/>
+      <NewArrivals title="Formal Edit Products" products={formalEdit}/>
+      <LatestNews blog={Blog} />
+      <Info ImageTwo={ImageTwo}/>
     </Layout>
   );
 }

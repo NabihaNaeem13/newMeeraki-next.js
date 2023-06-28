@@ -1,28 +1,19 @@
 import React from 'react';
 import { Blogs } from './Blogs/Blogs';
+import { SectionTitle } from 'components/shared/SectionTitle/SectionTitle';
 
-const blogs=[{
-    id:1,
-    image:"/DermaestheticsAssests/1 Homepage/images/img2.png",
-    title:"lorem ipsum",
-    subtitle:"lorem ipsum lorem ipsum",
-    buttonValue:"Shop Now"
-},
-{
-    id:2,
-    image:"/DermaestheticsAssests/1 Homepage/images/img1.png",
-    title:"lorem ipsum",
-    subtitle:"lorem ipsum lorem ipsum",
-    buttonValue:"Shop Gift"
-}]
 
-const ShopProduct = () => {
+const ShopProduct = ({HomeImage4}) => {
+  const imagedata=HomeImage4.slice(0,2);
   return (
     <>
     {/* <!-- BEGIN LATEST NEWS --> */}
     <section className='latest-news'>
       <div className='wrapper'>
-        <Blogs blogs={blogs} />
+      <SectionTitle
+            title='Shop by Category'
+          />
+        <Blogs blogs={imagedata} />
       </div>
     </section>
     {/* <!-- LATEST NEWS EOF --> */}

@@ -49,6 +49,22 @@
   }
   }
 //main styles
+#viewAllbtn{
+  border:1px solid #999999;
+  height: 60px;
+  line-height: 59px;
+  outline: none;
+  background:transparent;
+  padding: 0 50px;
+  font-weight: bold;
+  font-size: 14px;
+  color: #999999;
+  text-transform: uppercase;
+  display: inline-block;
+  transition: all 0.3s linear;
+  font-family: Lato;
+  border-radius:10px;
+}
 
 .main-wrapper {
   padding: 0 0 0 0;
@@ -270,18 +286,104 @@ h6,
     }
   }
 }
+//slide swiper
+.swiper-button-prev {
+  color: grey !important;
+  background-color: transparent;
+  box-shadow: 0 0 1px 1px rgb(20 23 28 / 10%), 0 3px 1px 0 rgb(20 23 28 / 10%);
+  width: 31px !important;
+  height: 47px !important;
+  border: 1px solid #1a1a1a52;
+}
+.swiper-button-next {
+  color: grey !important;
+  background-color: transparent;
+  box-shadow: 0 0 1px 1px rgb(20 23 28 / 10%), 0 3px 1px 0 rgb(20 23 28 / 10%);
+  width: 31px !important;
+  height: 47px !important;
+  border: 1px solid #1a1a1a52;
+}
+.swiper-button-prev:hover{
+  background-color: #000;
+  color: #fff !important;
+}
+.swiper-button-next:hover{
+  background-color: #000;
+  color: #fff !important;
+}
+.aiz-carousel.gutters-10 {
+  width: calc(100% + 20px);
+}
+.half-outside-arrow .slick-prev {
+  left: -10px;
+}
+.aiz-carousel .slick-arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  background: #fff;
+  border-radius: 50em;
+  border: 0;
+  box-shadow: 0 0 1px 1px rgb(20 23 28 / 10%), 0 3px 1px 0 rgb(20 23 28 / 10%);
+  font-size: 15px;
+  line-height: 40px;
+  padding: 0;
+  text-align: center;
+}
+.slick-list {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+}
+.slick-slider .slick-list,
+.slick-slider .slick-track {
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+.swiper-button-prev:after {
+  font-family: swiper-icons;
+  font-size: 1rem !important;
+  text-transform: none!important;
+  letter-spacing: 0;
+  font-variant: initial;
+  line-height: 1;
+}
+.swiper-button-next:after, .swiper-button-prev:after {
+font-family: swiper-icons;
+font-size: 1rem !important;
+text-transform: none!important;
+letter-spacing: 0;
+font-variant: initial;
+line-height: 1;
+}
+.swiper-pagination-bullet {
+width:10px;
+height:10px;
+display: inline-block;
+border-radius: 50%;
+background: var(--swiper-pagination-bullet-inactive-color,#000000) !important;
+}
+.swiper-wrapper {
+position: relative;
+width: 100% !important;
+height: 100%;
+z-index: 1;
+display:flex;
+box-sizing: content-box;
+float: left;
+}
 
 // main block
-#bg_imageground{
-  background-image: url(/assets/img/face.png);
-}
 .main-block {
-  padding-top: 340px;
-  padding-bottom: 237px;
-  background-color: rgba(0,0,0,0.4);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
   position: relative;
   z-index: 1;
 
@@ -686,8 +788,8 @@ h6,
   &-items {
     display: flex;
     justify-content: center;
-    margin-left: -12px;
-    margin-right: -12px;
+    margin-left: 350px;
+    margin-right: 350px;
   }
 
   &-item {
@@ -2826,7 +2928,7 @@ blockquote,
         }
 
         &__img {
-          height: 370px;
+          height: 390px;
         }
 
         &__name {
@@ -4943,7 +5045,7 @@ input[type='search']::-webkit-search-results-decoration {
   width: 100%;
   height: 100%;
   padding-top: 110px;
-  padding-bottom: 90px;
+  padding-bottom: 1px;
 
   .wrapper {
     width: 100%;
@@ -5004,7 +5106,7 @@ input[type='search']::-webkit-search-results-decoration {
 
 @media screen and (max-width: 1400px) {
   .products-item__img {
-    height: 435px;
+    height: 390px;
   }
 
   .top-categories__item {
@@ -5926,7 +6028,7 @@ input[type='search']::-webkit-search-results-decoration {
   }
 
   .slick-arrow {
-    top: 40.5%;
+    top: 44.1%;
     left: 30px;
     z-index: 1;
   }
@@ -7236,7 +7338,6 @@ input[type='search']::-webkit-search-results-decoration {
 
 @media screen and (max-width: 480px) {
   .main-block {
-    background-image: url(/assets/img/main-bg-sm.jpg) !important;
 
     &.load-bg {
       background-image: none;

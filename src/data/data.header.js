@@ -1,14 +1,14 @@
 export const header = {
-  logo: '/DermaestheticsAssests/1 Homepage/Icons & Logo/Logo.png',
+  logo: '/assets/img/meerakiLogo.png',
 };
 
 export const navItem = [
   {
-    name: 'Home',
+    name: 'SALE',
     path: '/',
   },
   {
-    name: 'Treatments',
+    name: 'New Arrivals',
     path: '#',
     subNav: [
       {
@@ -58,27 +58,27 @@ export const navItem = [
     ],
   },
   {
-    name: 'Pricing',
+    name: 'Basics',
     path: '/blog',
   },
   {
-    name: 'Deals',
+    name: 'Formal Edit',
     path: '/deal',
   },
   {
-    name: 'shop',
+    name: 'Festive Pret',
     path: '/shop',
   },
   {
-    name: 'blog',
+    name: 'Winter Wear',
     path: '/blog',
   },
   {
-    name: 'about',
+    name: 'Ready to Wear',
     path: '/about',
   },
   {
-    name: 'contact',
+    name: 'Unstitched',
     path: '/contact',
   },
 ];

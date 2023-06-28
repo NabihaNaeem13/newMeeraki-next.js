@@ -3,34 +3,26 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { PostComment } from './PostComment/PostComment';
 import { PostContent } from './PostContent/PostContent';
+import { useProductContext } from 'Context/ProductContext';
 
 export const Post = () => {
+  const {getBlogDetail,BlogDetail}=useProductContext();
   const router = useRouter();
-  const blogs = [...blogData];
-  const [blog, setBlog] = useState(null);
-
   useEffect(() => {
     if (router.query.id) {
-      const data = blogs.find((bg) => bg.id === router.query.id);
-      setBlog(data);
+      getBlogDetail(`https://meeraki.com/api/v2/blogs/${router.query.id}`)
     }
   }, [router.query.id]);
 
-  if (!blog) return <></>;
+  if (!BlogDetail) return <></>;
 
   return (
     <>
       {/* <!-- BEGIN POST --> */}
       <div className='post'>
         <div className='wrapper'>
-          <PostContent blog={blog} />
-          <PostComment blog={blog} />
+          <PostContent blog={BlogDetail} />
         </div>
-        <img
-          className='promo-video__decor js-img'
-          src='/assets/img/promo-video__decor.jpg'
-          alt=''
-        />
       </div>
       {/* <!-- POST EOF   --> */}
     </>

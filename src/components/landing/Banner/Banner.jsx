@@ -1,26 +1,49 @@
 import Link from 'next/link';
-export const Banner = () => {
+import { Autoplay, Pagination, Navigation } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+export const Banner = ({banners}) => {
   return (
     <>
       {/* <!-- BEGIN MAIN BLOCK --> */}
-      <div id="bg_imageground">
-      <div className='main-block load-bg'>
-        <div className='wrapper'>
-          <div className='main-block__content'>
-          <h1 className='main-text'>Revive Your Body</h1>
-            <p>
-               Renew your spirit, The perfect Detox solution 12 sessions of LPG Plus 6 sessions of fat freezing
-            </p>
-            <Link href='/shop'>
-              <a className='btn'>Book now</a>
-            </Link>
-          </div>
-        </div>
-        <img
-          className='main-block__decor'
-          src='/assets/img/main-block-decor.png'
-          alt=''
-        />
+      <div className='main-block'>
+      <div
+      style={{
+        width: "100%",
+        height: "auto"
+      }}
+    >
+      <div className="col-12">
+        <Swiper
+          spaceBetween={0}
+          centeredSlides={true}
+          autoplay={{
+            delay: 2500,
+            disableOnInteraction: false
+          }}
+          pagination={{
+            clickable: true
+          }}
+          navigation={true}
+          modules={[Autoplay, Pagination, Navigation]}
+          className="mySwiper"
+        >
+            {banners.map((curElem)=>{
+          const {photo,url,id}=curElem;
+          return(
+            <SwiperSlide  key={id+photo}>
+            <img
+              src={`https://meeraki.com/public/${photo}`}
+              alt={url}
+              style={{ width: "100%" }}
+            /> 
+            </SwiperSlide>
+          ) 
+        })}
+        </Swiper>
+      </div>
       </div>
       </div>
       {/* <!-- MAIN BLOCK EOF --> */}

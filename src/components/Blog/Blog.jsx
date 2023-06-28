@@ -1,20 +1,18 @@
 import { Blogs } from './Blogs/Blogs';
-import blogData from 'data/blog/blog';
 import { usePagination } from 'components/utils/Pagination/Pagination';
 import { PagingList } from 'components/shared/PagingList/PagingList';
 import { SectionTitle } from 'components/shared/SectionTitle/SectionTitle';
+import { useProductContext } from 'Context/ProductContext';
 
 export const Blog = () => {
-  const blogs = [...blogData];
-  const paginate = usePagination(blogs, 3);
-
+  const {Blog}=useProductContext();
+  const paginate = usePagination(Blog, 2);
   return (
     <>
       {/* <!-- BEGIN BLOG --> */}
       <div className='blog'>
       <SectionTitle
-          title="The Latest News At Dermaesthetics"
-          body="Lorem ipsum dolar sit amet, Lorem ipsum dolor sit amet, Lorem ipsum dolor sit amet"
+          title="The Latest News At Meeraki"
         />
         <div className='wrapper'>
           <Blogs blogs={paginate?.currentData()} />

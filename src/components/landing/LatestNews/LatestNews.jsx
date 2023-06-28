@@ -1,11 +1,10 @@
 import Link from 'next/link';
 import { Blogs } from 'components/Blog/Blogs/Blogs';
 import { SectionTitle } from 'components/shared/SectionTitle/SectionTitle';
-import blogData from 'data/blog/blog';
-import styled from 'styled-components';
 
-export const LatestNews = () => {
-  const blogs = [...blogData].slice(0, 3);
+
+export const LatestNews = ({blog}) => {
+  const blogs = [...blog].slice(0, 3);
   return (
     <>
       {/* <!-- BEGIN LATEST NEWS --> */}  
@@ -18,7 +17,7 @@ export const LatestNews = () => {
         </div>
         <div className='latest-news__btn'>
           <Link href='/blog'>
-            <Viewallbtn>View All</Viewallbtn>
+            <button id="viewAllbtn">View All</button>
           </Link>
         </div>
       </section>
@@ -26,20 +25,3 @@ export const LatestNews = () => {
     </>
   );
 };
-
-const Viewallbtn=styled.button({
-  border:"1px solid #999999",
-  height: "60px",
-  lineHeight: "59px",
-  outline: "none",
-  background:"transparent",
-  padding: "0 50px",
-  fontWeight: "bold",
-  fontSize: "14px",
-  color: "#999999",
-  textTransform: "uppercase",
-  display: "inlineBlock",
-  transition: "all 0.3s linear",
-  fontFamily: "Lato",
-  borderRadius:"10px"
-})

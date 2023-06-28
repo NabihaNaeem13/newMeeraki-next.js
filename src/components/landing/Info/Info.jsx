@@ -1,49 +1,17 @@
-import { PromoVideo } from 'components/shared/PromoVideo/PromoVideo';
-import { useState } from 'react';
-import Link from 'next/link';
+import { SectionTitle } from 'components/shared/SectionTitle/SectionTitle';
+import {Blogs} from "./Blogs/Blogs";
 
-export const Info = () => {
-  const [play, setPlay] = useState(false);
-  const url = play
-    ? 'https://www.youtube.com/embed/K1yp7Q1hH1c?autoplay=1'
-    : '';
+export const Info = ({ImageTwo}) => {
   return (
     <>
       {/* <!-- BEGIN INFO BLOCKS --> */}
       <div className='info-blocks mt-4'>
-        <div
-          className='info-blocks__item js-img'
-          style={{ backgroundImage: `url('/assets/img/info-item-bg1.jpg')` }}
-        >
-          <div className='wrapper'>
-            <div className='info-blocks__item-img'>
-              <img
-                src='/DermaestheticsAssests/1 Homepage/images/ourmission.png'
-                className='js-img'
-                alt=''
-              />
-            </div>
-            <div className='info-blocks__item-text'>
-              <h2>Our Mission</h2>
-              <span className='info-blocks__item-descr'>
-                Nourish your skin with toxin-free cosmetic products. With the
-                offers that you can’t refuse.
-              </span>
-              <p>
-                Non aliqua reprehenderit reprehenderit culpa laboris nulla minim
-                anim velit adipisicing ea aliqua alluptate sit do do.Non aliqua
-                reprehenderit reprehenderit culpa laboris nulla minim anim velit
-                adipisicing ea aliqua alluptate sit do do.Non aliqua
-                reprehenderit reprehenderit culpa laboris nulla minim.
-              </p>
-              <Link href='/shop'>
-                <a className='btn'>
-                  Explore
-                </a>
-              </Link>
-            </div>
-          </div>
-        </div>
+      <div className='wrapper'>
+      <SectionTitle
+            title='Special Offer'
+          />
+          <Blogs ImageTwo={ImageTwo}/>
+      </div>
       </div>
       {/* <!-- INFO BLOCKS EOF   --> */}
     </>

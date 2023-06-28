@@ -15,8 +15,7 @@ const breadcrumbsData = [
 const BlogPage = () => {
   return (
     <PublicLayout breadcrumb={breadcrumbsData} breadcrumbTitle='Blog'>
-      <Blog />
-      <GetSolution/>
+      <Blog/>
     </PublicLayout>
   );
 };

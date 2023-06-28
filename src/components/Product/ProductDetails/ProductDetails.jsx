@@ -1,47 +1,39 @@
-import productData from 'data/product/product';
 import { useContext, useEffect, useState } from 'react';
-import Slider from 'react-slick';
 import socialData from 'data/social';
-import { Reviews } from '../Reviews/Reviews';
-import { ReviewFrom } from '../ReviewForm/ReviewFrom';
 import { useRouter } from 'next/router';
 import { CartContext } from 'pages/_app';
-import { FaRegHeart } from 'react-icons/fa';
+import { useProductContext } from 'Context/ProductContext';
+import ImageSlider from './ImageSlider';
 
 export const ProductDetails = () => {
   const router = useRouter();
   const { cart, setCart } = useContext(CartContext);
-
+  const {getSingleProduct,singleProduct}=useProductContext();
   const socialLinks = [...socialData];
-  const products = [...productData];
   const [product, setProduct] = useState(null);
   const [addedInCart, setAddedInCart] = useState(false);
 
   useEffect(() => {
-    if (router.query.id) {
-      const data = products.find((pd) => pd.id === router.query.id);
-      setProduct(data);
+    if (router.query.product_id) {
+      getSingleProduct(`https://meeraki.com/api/v2/products/${router.query.product_id}`)
     }
-  }, [router.query.id]);
+  }, [router.query.product_id]);
 
   useEffect(() => {
-    if (product) {
-      setAddedInCart(Boolean(cart?.find((pd) => pd.id === product.id)));
+    if (singleProduct) {
+      setAddedInCart(Boolean(cart?.find((pd) => pd.id === singleProduct.id)));
     }
-  }, [product, cart]);
+  }, [singleProduct, cart]);
 
   const [quantity, setQuantity] = useState(1);
   const [tab, setTab] = useState(2);
-  const [activeColor, setActiveColor] = useState(2);
-  const [nav1, setNav1] = useState();
-  const [nav2, setNav2] = useState();
 
   const handleAddToCart = () => {
-    const newProduct = { ...product, quantity: quantity };
+    const newProduct = { ...singleProduct, quantity: quantity };
     setCart([...cart, newProduct]);
   };
 
-  if (!product) return <></>;
+  if (!singleProduct) return <></>;
   return (
     <>
       {/* <!-- BEGIN PRODUCT --> */}
@@ -49,61 +41,24 @@ export const ProductDetails = () => {
         <div className='wrapper'>
           <div className='product-content'>
             {/* <!-- Product Main Slider --> */}
-            <div className='product-slider'>
-              <div className='product-slider__main'>
-                <Slider
-                  fade={true}
-                  asNavFor={nav2}
-                  arrows={false}
-                  lazyLoad={true}
-                  ref={(slider1) => setNav1(slider1)}
-                >
-                  {product.imageGallery.map((img, index) => (
-                    <div key={index} className='product-slider__main-item'>
-                      <div className='products-item__type'>
-                          <span className='products-item__sale'><FaRegHeart style={{fontSize:"2rem"}}/></span>
-                      </div>
-                      <img src={img} alt='product' />
-                    </div>
-                  ))}
-                </Slider>
-              </div>
-
-              {/* <!-- Product Slide Nav --> */}
-              <div className='product-slider__nav'>
-                <Slider
-                  arrows={false}
-                  asNavFor={nav1}
-                  ref={(slider2) => setNav2(slider2)}
-                  slidesToShow={4}
-                  swipeToSlide={true}
-                  focusOnSelect={true}
-                >
-                  {product.imageGallery.map((img, index) => (
-                    <div key={index} className='product-slider__nav-item'>
-                      <img src={img} alt='product' />
-                    </div>
-                  ))}
-                </Slider>
-              </div>
-            </div>
+            <ImageSlider productimage={singleProduct.photos}/>
             <div className='product-info'>
-              <h3>{product.name}</h3>
-              {product.isStocked ? (
+              <h3>{singleProduct.name}</h3>
+              {singleProduct.current_stock? (
                 <span className='product-stock'>in stock</span>
               ) : (
                 ''
               )}
-
-              <span className='product-num'>SKU: {product.productNumber}</span>
-              {product.oldPrice ? (
+        
+              <span className='product-num'>SKU: {singleProduct.product_sku}</span>
+              {singleProduct.oldPrice ? (
                 <span className='product-price'>
-                  <span>${product.oldPrice}</span>${product.price}
+                  <span>${singleProduct.oldPrice}</span>{singleProduct.base_price}
                 </span>
               ) : (
-                <span className='product-price'>${product.price}</span>
+                <span className='product-price'>{singleProduct.base_price}</span>
               )}
-              <p>{product.content}</p>
+              <p>{singleProduct.content}</p>
 
               {/* <!-- Social Share Link --> */}
               <div className='contacts-info__social'>
@@ -191,42 +146,61 @@ export const ProductDetails = () => {
                 >
                   Description
                 </li>
-                <li
-                  className={tab === 2 ? 'active' : ''}
-                  onClick={() => setTab(2)}
-                >
-                  Reviews
-                </li>
               </ul>
               <div className='box-tab-cont'>
                 {/* <!-- Product description --> */}
                 {tab === 1 && (
                   <div className='tab-cont'>
-                    <p>{product.description}</p>
-                    <p>{product.description}</p>
-                  </div>
-                )}
-
-                {tab === 2 && (
-                  <div className='tab-cont product-reviews'>
-                    {/* <!-- Product Reviews --> */}
-                    <Reviews reviews={product.reviews} />
-
-                    {/* <!-- Product Review Form --> */}
-                    <ReviewFrom />
+                   <div className='mt-2' dangerouslySetInnerHTML={{__html: singleProduct.description}}></div>
                   </div>
                 )}
               </div>
             </div>
           </div>
         </div>
-        <img
-          className='promo-video__decor js-img'
-          src='/assets/img/promo-video__decor.jpg'
-          alt=''
-        />
       </div>
       {/* <!-- PRODUCT EOF   --> */}
     </>
   );
 };
+
+/*
+  <div className='product-slider'>
+              <div className='product-slider__main'>
+                <Slider
+                  fade={true}
+                  asNavFor={nav2}
+                  arrows={false}
+                  lazyLoad={true}
+                  ref={(slider1) => setNav1(slider1)}
+                >
+                  {product.photos.map((img, index) => (
+                    <div key={index} className='product-slider__main-item'>
+                      <div className='singleProduct-item__type'>
+                          <span className='singleProduct-item__sale'><FaRegHeart style={{fontSize:"2rem"}}/></span>
+                      </div>
+                      <img src={img} alt='product' />
+                    </div>
+                  ))}
+                </Slider>
+              </div>
+
+              {/* <!-- Product Slide Nav --> */
+      /*        <div className='product-slider__nav'>
+                <Slider
+                  arrows={false}
+                  asNavFor={nav1}
+                  ref={(slider2) => setNav2(slider2)}
+                  slidesToShow={4}
+                  swipeToSlide={true}
+                  focusOnSelect={true}
+                >
+                  {product.imageGallery.map((img, index) => (
+                    <div key={index} className='product-slider__nav-item'>
+                      <img src={img} alt='product' />
+                    </div>
+                  ))}
+                </Slider>
+              </div>
+            </div>
+*/

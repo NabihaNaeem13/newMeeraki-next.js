@@ -1,5 +1,6 @@
 import React from 'react';
 import { Blogs } from '../ShopProduct/Blogs/Blogs';
+import { SectionTitle } from 'components/shared/SectionTitle/SectionTitle';
 
 const blogs=[{
     id:1,
@@ -16,14 +17,17 @@ const blogs=[{
     buttonValue:"Book Now"
 }]
 
-const BookNow = () => {
+const BookNow = ({HomeImage4}) => {
+  const imagedata=HomeImage4.slice(2,4);
   return (
     <>
     {/* <!-- BEGIN LATEST NEWS --> */}
     <section className='latest-news'>
       <div className='wrapper'>
-        <h1 style={{textAlign:"center",fontSize:"1.8rem",color:"#9a9291",marginBottom:"0.5rem"}}>Special Offer</h1>
-        <Blogs blogs={blogs} />
+      <SectionTitle
+            title='Shop by Category'
+          />
+        <Blogs blogs={imagedata} />
       </div>
     </section>
     {/* <!-- LATEST NEWS EOF --> */}

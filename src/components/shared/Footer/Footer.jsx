@@ -37,7 +37,7 @@ export const Footer = () => {
             <div className='footer-top__logo'>
               <Link href='/'>
                 <a>
-                  <LogoImage src={footerLogo} alt='' id="footerlogo" />
+                  <LogoImage src={'http://meeraki.com/public/uploads/all/tu5tXvefF7hjJzjpsLCmBgTh3UbUoCTFuRREpF5U.png'} alt='' id="footerlogo" />
                 </a>
               </Link>
             </div>
@@ -56,35 +56,23 @@ export const Footer = () => {
           <div className='footer-nav'>
           <div className='footer-nav__col'>
               <span className='footer-nav__col-title'>About</span>
-              <p style={{color:"#868585"}}>With over 10 years of experience in aesthetics and beauty,Dermaesthetics Clinic is a highly professional results driven clinic. We offer a wide range of skin care treatments and facial and body aesthetics procedures,using the latest technology available and advanced products. We have invested in high quality,regulated and proven specialist equipment to deliver safe, effective results.  </p>
+              <p style={{color:"#868585"}}>Meeraki is a fashion brand created especially for young and
+                  lively youth. It consists of a hardworking and enthusiastic
+                  group of people.</p>
               </div>
             {/* Footer Nav */}
             {footerNav.map((nav, index) => (
               <NavCol nav={nav} key={index} />
             ))}
-            <div className='footer-nav__col'>
-              <span className='footer-nav__col-title'>Contact us</span>
-              <ul>
-                <li className='mt-2' style={{color:"#868585"}}>
-                  <i style={{fontSize:"1.5rem",color:"#868585"}}><MdLocationPin/></i> First Floor, 100 Alpha House, Borough High Street,London SE11LB
-                </li>
-                <li className='mt-2'>
-                  <div className='footer-nav__col-phones'>
-                  <i style={{fontSize:"1.5rem",color:"#868585"}}><BsFillTelephoneFill/></i><a href='tel:+1207 509 6415'>0207 509 6415</a>
-                  </div>
-                </li>
-                <li className='mt-2'>
-                  <i style={{fontSize:"1.5rem",color:"#868585"}}><IoIosMail/></i>
-                  <a href='mailto:info@Dermaesthetics.uk'>info@Dermaesthetics.uk</a>
-                </li>
-              </ul>
-            </div>
             {footerNavPopular.map((nav, index) => (
               <NavCol nav={nav} key={index} />
             ))}
           </div>
           <div className='footer-copy'>
-            <span>Dermaesthetics Clinic Copyright &copy; 2023</span>
+            <span>Copyright &copy; 2023 Meeraki. Developed by</span>
+            &nbsp;<a href="https://thedatech.com" target="_blank" style={{ color: "#ED7014" }}>
+                  <b>DA Tech</b>
+            </a>
           </div>
         </div>
       </footer>

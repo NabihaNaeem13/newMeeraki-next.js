@@ -3,31 +3,31 @@
     "title": "Our Company",
     "navLinks": [
       {
-        "name": "Careers",
-        "path": "/categories"
-      },
-      {
-        "name": "Complaints Procedure",
-        "path": "/categories"
-      },
-      {
         "name": "Privacy policy",
         "path": "/categories"
       },
       {
-        "name": "Press Enquiries",
+        "name": "Delivery Policy",
         "path": "/categories"
       },
       {
-        "name": "Delivery Information",
-        "path": "/categories"
-      },
-      {
-        "name": "Site Map",
+        "name": "Return Policy",
         "path": "/categories"
       },
       {
         "name": "Terms and Conditions",
+        "path": "/categories"
+      },
+      {
+        "name": "About",
+        "path": "/about"
+      },
+      {
+        "name": "FAQ's",
+        "path": "/faq"
+      },
+      {
+        "name": "Contact Details",
         "path": "/categories"
       }
     ]

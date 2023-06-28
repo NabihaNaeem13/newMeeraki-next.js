@@ -15,7 +15,6 @@ export const Blogs = ({ blogs }) => {
         ))}
         </Grid>
         </Box>
-
       {/* <!--  BLOG EOF   --> */}
     </>
   );

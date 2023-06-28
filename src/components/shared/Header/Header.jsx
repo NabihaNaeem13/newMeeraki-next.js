@@ -34,23 +34,23 @@ export const Header = () => {
       {/* <!-- BEGIN HEADER --> */}
       <header className='header'>
           <div className='header-top'>
-            <span><a><CiFacebook className='social-head-icon'/></a><a><FaInstagram className='social-head-icon'/></a><a><TiSocialTwitterCircular className='social-head-icon' style={{fontSize:"1.5rem"}}/></a><a><TiSocialLinkedinCircular className='social-head-icon' style={{fontSize:"1.5rem"}}/></a></span>
-            <span><RiStarFill className='headerstars mx-1' style={{fontSize:"1rem"}}/>Trustpilot<span><RiStarFill className='headerstars'/><RiStarFill className='headerstars'/><RiStarFill className='headerstars'/><RiStarFill className='headerstars'/><RiStarHalfFill className='headerstars'/></span></span>
-            <i
-              className='header-top-close js-header-top-close'
-            >
-              <button id="requestbtnheader1"><FaPhoneAlt className='mx-3'/>Book Now</button>
-              <button id="requestbtnheader"><FaPhoneAlt/>Request a call</button>
-            </i>
+          <div className="top-line-meer">
+      <div id="shopify-section-custom-ticker" className="shopify-section">
+        <div
+          className="h__top bgbl pt__10 pb__10 fs__12 flex fl_center al_center"
+          data="data-2"
+        >
+          <div className="container-fluid bounce">
+            <div className="text-wrapper">
+              <p className="animate-charcter">🌎 FREE Delivery Nationwide 🌎</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
           </div>
         <div className={`header-content ${fixedNav ? 'fixed' : ''}`}>
-          <div className='header-logo'>
-            <Link href='/'>
-              <a>
-                <img src={header.logo} alt='' className='mb-2' />
-              </a>
-            </Link>
-          </div>
+        <Link href="/"><img src={header.logo} alt='' className='mb-2 logomeeraki' /></Link>
           <div className='header-box'>
             {/* Nav */}
             <Nav navItem={navItem} />
@@ -80,7 +80,6 @@ export const Header = () => {
               </li>
             </ul>
           </div>
-
           <div className='btn-menu js-btn-menu'>
             {[1, 2, 3].map((i) => (
               <span key={i}>&nbsp;</span>

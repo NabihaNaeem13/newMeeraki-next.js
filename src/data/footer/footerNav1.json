@@ -1,33 +1,25 @@
 [
     {
-      "title": "Popular Treatments",
+      "title": "MY ACCOUNT",
       "navLinks": [
         {
-          "name": "Laser Hair Removal",
+          "name": "Login",
+          "path": "/login"
+        },
+        {
+          "name": "Sign up",
+          "path": "/registration"
+        },
+        {
+          "name": "Order History",
           "path": "/about"
         },
         {
-          "name": "Hydrafacial",
-          "path": "/faq"
+          "name": "My Wishlist",
+          "path": "/wishlist"
         },
         {
-          "name": "Scalp Mesotherapy",
-          "path": "/about"
-        },
-        {
-          "name": "Fat Freezing",
-          "path": "/blog"
-        },
-        {
-          "name": "LPG Endermologie",
-          "path": "/about"
-        },
-        {
-          "name": "Deluxe Facials",
-          "path": "/about"
-        },
-        {
-          "name": "Derma Fillers",
+          "name": "Track Order",
           "path": "/about"
         }
       ]

@@ -9,7 +9,6 @@ import { SingleProduct } from './SingleProduct/SingleProduct';
 
 export const ProductsCarousel = ({ products }) => {
   const { cart, setCart } = useContext(CartContext);
-
   const handleAddToCart = (id) => {
     const newProduct = products?.find((pd) => pd.id === id);
     setCart([...cart, { ...newProduct, quantity: 1 }]);
