@@ -19,10 +19,7 @@ const ContactPage = () => {
   return (
     <PublicLayout breadcrumb={breadcrumbsData} breadcrumbTitle='Contact'>
       <ContactDetailBlock />
-      <ContactInfo />
       <ContactFrom />
-      <Map />
-      <ContactGrid/>
     </PublicLayout>
   );
 };

@@ -1,43 +1,94 @@
 import socialData from 'data/social';
+import {useFormik} from "formik";
+import { ContactSchema } from 'Schemas';
+import Link from "next/link";
+
+
+const initialValues={
+  name:"",
+  email:"",
+  phonenumber:"",
+  message:""
+  }
 
 export const ContactInfo = () => {
   const footerSocial = [...socialData];
+
+  const {errors,values,touched,handleBlur,handleChange,handleSubmit}=useFormik({
+    initialValues,
+    validationSchema:ContactSchema,
+    onSubmit:(values,action)=>{
+       console.log(values);
+       action.resetForm();
+    }
+  })
   return (
     <>
       {/* <!-- BEGIN CONTACTS INFO --> */}
-      <div className='contacts-info'>
-        <div className='wrapper'>
-          <div className='contacts-info__content'>
-            <div className='contacts-info__text'>
-              <h4>We take care of you</h4>
-              <p>
-                Email us if you have any questions, we will be sure to contact
-                you and find a solution. Also, our managers will help you choose
-                the product that suits you best, at the best price. From year to
-                year, the BeShop network develops and improves, taking into
-                account all consumer needs and market trends. But for us, the
-                concern remains that when coming to the BeShop store, customers
-                do not have questions about the convenience and comfort of
-                shopping, product quality and the level of professionalism of
-                sales consultants.
-              </p>
+      <div className='section-042 mt-5'>
+          <div className='container'>
+            <div className='row'>
+              <div className='col-md-12 offset-xl-1 col-xl-10 col-lg-12'>
+                <div className='row'>
+                  <div className='col-md-6'>
+                  <p style={{margin:"0px",fontSize: "14px"}}>- For order status inquiry, please <Link href="/trackOrder" style={{color: "#1b1b28"}}>click here</Link>
+                        <br/>
+- To cancel and return ordered items, please log-in with your account <a href="https://meeraki.com/staging/users/login" style={{color: "#1b1b28"}}>here</a> and open a ticket.
+ <br/>
+- For other concerns, feel free to send us a message or contact us on below details:</p>
+<br/>
+<h4 className="az_custom_heading">EMAIL:</h4>
+<p> support@meeraki.com <br/>
+                           </p>
+                           <h4 className="az_custom_heading">Contact No</h4>
+                           <p>+92 308 786 9696 <br/>
+                           </p>
+                           <h4 className="az_custom_heading">Store Hours</h4>
+                           <p>Monday-Saturday 9am - 10pm <br/>
+                           </p>
+                           <p>Sunday 11am - 08pm </p>
+                  </div>
+                  <div className='col-md-6'>
+                  <form onSubmit={handleSubmit}>
+                  <div className="mb-3">
+  <label for="name" className="form-label">Full Name *</label>
+  <input type="text" className="contactform-input" id="name" name="name" autoComplete='off' value={values.name} onChange={handleChange} onBlur={handleBlur}/>
+  {errors.name && touched.name ?(<p className='form-error'>{errors.name}</p>):null}
+</div>
+  <div className='row mb-3'>
+    <div className='col'>
+    <label for="phonenumber" className="form-label">Phone *</label>
+  <input type="text" className="contactform-input" id="phonenumber" name="phonenumber" autoComplete='off'
+    value={values.phonenumber} onChange={handleChange} onBlur={handleBlur}
+  />
+   {errors.phonenumber && touched.phonenumber ?(<p className='form-error'>{errors.phonenumber}</p>):null}
+    </div>
+    <div className='col'>
+    <label for="email" className="form-label">Email *</label>
+  <input type="email" className="contactform-input" id="email" autoComplete='off' name="email"
+    value={values.email} onChange={handleChange} onBlur={handleBlur}
+  />
+   {errors.email && touched.email ?(<p className='form-error'>{errors.email}</p>):null}
+    </div>
+  </div>
+  <div className='mb-3'>
+  <label for="message" className="form-label">Your Message *</label>
+  <br/>
+  <textarea name="message" cols="40" rows="10" className="contactform-input" autoComplete='off'
+  value={values.message} onChange={handleChange} onBlur={handleBlur}></textarea>
+   {errors.message && touched.message ?(<p className='form-error'>{errors.message}</p>):null}
+  </div>
+  <div className='mb-4'>
+    <input type="submit" value="send" className='btn'/>
+  </div>
+                  </form>
+                                  </div>
+                </div>
+              </div>
             </div>
-           {/* <div className='contacts-info__social'>
-              <span>Find us here:</span>
-              <ul>
-                {footerSocial.map((social, index) => (
-                  <li key={index}>
-                    <a href={social.path}>
-                      <i className={social.icon}></i>
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>*/}
           </div>
         </div>
-      </div>
-      {/* <!-- CONTACTS INFO EOF   -->  */}
+      {/* <!-- CONTACTS INFO EOF contact-submit  -->  */}
     </>
   );
 };

@@ -10,8 +10,8 @@ export const Cart = () => {
   const socialLinks = [...socialData];
 
   const total = cart.reduce(
-    (total, item) => total + Number(item.price) * Number(item.quantity),
-    0
+    (total, item) =>total + Number(item.current_price) * Number(item.quantity),
+      0
   );
 
   const handleProductQuantity = (change, quantity, id) => {

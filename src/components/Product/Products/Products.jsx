@@ -3,7 +3,7 @@ import { useContext } from 'react';
 import { SingleProduct } from './SingleProduct/SingleProduct';
 
 export const Products = ({ products }) => {
-  const { cart, setCart } = useContext(CartContext);
+  const { cart, setCart,wishlist,setwishlist } = useContext(CartContext);
 
   const handleAddToCart = (id) => {
     const newProduct = products?.find((pd) => pd.id === id);
@@ -11,13 +11,14 @@ export const Products = ({ products }) => {
   };
   const handleAddToWishlist = (id) => {
     const newProduct = products?.find((pd) => pd.id === id);
-    setCart([...cart, { ...newProduct}]);
+    setwishlist([...wishlist, { ...newProduct}]);
   };
   return (
     <>
       {products.map((product) => (
         <SingleProduct
           addedInCart={Boolean(cart?.find((pd) => pd.id === product.id))}
+          addedInwishCard={Boolean(wishlist?.find((pd) => pd.id === product.id))}
           key={product.id}
           product={product}
           onAddToWish={handleAddToWishlist}

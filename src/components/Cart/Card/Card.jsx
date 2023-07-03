@@ -3,14 +3,17 @@ import Link from 'next/link';
 export const Card = ({ cart, onChangeQuantity }) => {
   const {
     name,
-    image,
+    thumbnail_image,
     id,
+    base_price,
     isStocked,
-    productNumber,
+    product_sku,
     oldPrice,
     price,
+    current_price,
     quantity,
   } = cart;
+  console.log("cart",cart);
 
   return (
     <>
@@ -18,7 +21,7 @@ export const Card = ({ cart, onChangeQuantity }) => {
         <div className='cart-table__col'>
           <Link href={`/product/${id}`}>
             <a className='cart-table__img'>
-              <img src={image} className='js-img' alt='' />
+              <img src={`https://meeraki.com/public/${thumbnail_image}`} className='js-img' alt='' />
             </a>
           </Link>
           <div className='cart-table__info'>
@@ -28,7 +31,7 @@ export const Card = ({ cart, onChangeQuantity }) => {
             {isStocked && (
               <span className='cart-table__info-stock'>in stock</span>
             )}
-            <span className='cart-table__info-num'>SKU: {productNumber}</span>
+            <span className='cart-table__info-num'>SKU: {product_sku}</span>
           </div>
         </div>
         <div className='cart-table__col'>
@@ -37,7 +40,7 @@ export const Card = ({ cart, onChangeQuantity }) => {
               <span>${oldPrice}</span>${price}
             </span>
           ) : (
-            <span className='cart-table__price'>${price}</span>
+            <span className='cart-table__price'>{base_price}</span>
           )}
         </div>
         <div className='cart-table__col'>
@@ -66,7 +69,7 @@ export const Card = ({ cart, onChangeQuantity }) => {
         </div>
         <div className='cart-table__col'>
           <span className='cart-table__total'>
-            ${(price * quantity).toFixed(2)}
+          PKR{(current_price * quantity).toFixed(2)}
           </span>
         </div>
       </div>

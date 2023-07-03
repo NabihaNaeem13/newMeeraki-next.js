@@ -1,4 +1,7 @@
 //solutionGet
+.form-error{
+  color: red;
+}
 #SolutionContainer{
   width: 100%;
   background-color: rgba($color: #efcccc, $alpha: 0.8);
@@ -736,7 +739,7 @@ float: left;
 // discount
 
 .discount {
-  padding: 214px 0;
+  padding: 10px 0;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -1893,7 +1896,7 @@ width: 100%;
 .discount {
   &-contacts {
     padding:0px 0 50px;
-    margin-top: 52px;
+    margin-top: 82px;
     display: flex;
     flex-wrap: wrap;
 
@@ -2036,10 +2039,10 @@ width: 100%;
       cursor: pointer;
       transition: $transition;
       position: relative;
-      font-size: 20px;
+      font-size: 34px;
       line-height: 150%;
       color: #222222;
-      font-family: 'Tenor Sans';
+      font-family: 'Mrs Saint Delafield';
       padding-bottom: 18px;
       display: flex;
       align-items: center;
@@ -3849,6 +3852,20 @@ blockquote,
 }
 
 // wishlist page
+
+.cart-table__button{
+border: none;
+background: transparent;
+font-size: 2rem;
+color: red;
+}
+
+.cart-table__buttonRemove{
+  border: none;
+background: transparent;
+font-size: 2rem;
+  color: rgb(172, 168, 168);
+  }
 
 .wishlist {
   padding-top: 185px;
@@ -6093,7 +6110,7 @@ input[type='search']::-webkit-search-results-decoration {
   }
 
   .discount {
-    padding: 60px 0;
+    padding: 12px 0;
   }
 
   .discount-info .saint-text {

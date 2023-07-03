@@ -7,27 +7,32 @@ import { useEffect, useState } from 'react';
 import Dropdown from 'react-dropdown';
 import { AsideItem } from '../shared/AsideItem/AsideItem';
 import { SectionTitle } from 'components/shared/SectionTitle/SectionTitle';
+import { useProductContext } from 'Context/ProductContext';
 
 // React Range
 const { createSliderWithTooltip } = Slider;
 const Range = createSliderWithTooltip(Slider.Range);
 const options = [
-  { value: 'highToMin', label: 'From expensive to cheap' },
-  { value: 'minToHigh', label: 'From cheap to expensive' },
+  { value: 'highToMin', label: 'Price high to low' },
+  { value: 'minToHigh', label: 'Price low to high' },
+  { value: 'Newest', label: 'Newest' },
+  { value: 'oldest', label: 'Oldest' }
 ];
 export const Shop = () => {
-  const allProducts = [...productData];
+  const {readyToWear}=useProductContext();
+  const allProducts = [...readyToWear];
 
   const [productOrder, setProductOrder] = useState(
-    allProducts.sort((a, b) => (a.price < b.price ? 1 : -1))
+    allProducts.sort((a, b) => (a.current_price < b.current_price ? 1 : -1))
   );
-
-  const [products, setProducts] = useState([...productOrder]);
+  const [products, setProducts] = useState(productOrder);
   const [filter, setFilter] = useState({ isNew: false, isSale: true });
 
   useEffect(() => {
-    setProducts(productOrder);
+    setProductOrder(productOrder);
   }, [productOrder]);
+
+  console.log("allProducts:",products);
 
   useEffect(() => {
     if (filter.isNew && filter.isSale) {
@@ -45,17 +50,26 @@ export const Shop = () => {
       setProducts([...productOrder]);
     }
   }, [filter, productOrder]);
-  const recentlyViewed = [...productData].slice(0, 3);
-  const todaysTop = [...productData].slice(3, 6);
-  const paginate = usePagination(products, 9);
+
+  const recentlyViewed = [...productOrder].slice(0, 3);
+  const todaysTop = [...productOrder].slice(3, 6);
+  const paginate = usePagination(productOrder, 9);
 
   const handleSort = (value) => {
     if (value === 'highToMin') {
-      const newOrder = allProducts.sort((a, b) => (a.price < b.price ? 1 : -1));
+      const newOrder = allProducts.sort((a, b) => (a.base_price < b.base_price ? 1 : -1));
       setProductOrder(newOrder);
     }
     if (value === 'minToHigh') {
-      const newOrder = allProducts.sort((a, b) => (a.price > b.price ? 1 : -1));
+      const newOrder = allProducts.sort((a, b) => (a.base_price > b.base_price ? 1 : -1));
+      setProductOrder(newOrder);
+    }
+    if(value==='Newest'){
+      const newOrder=allProducts.sort((a,b) => new Date(a.review_date) - new Date(b.review_date));
+      setProductOrder(newOrder);
+    }
+    if(value==='oldest'){
+      const newOrder=allProducts.sort((a,b) =>new Date(b.review_date) - new Date(a.review_date));
       setProductOrder(newOrder);
     }
   };
@@ -167,16 +181,6 @@ export const Shop = () => {
             </div>
           </div>
         </div>
-        <img
-          className='promo-video__decor js-img'
-          src='/assets/img/promo-video__decor.jpg'
-          alt=''
-        />
-        <img
-          className='shop-decor js-img'
-          src='/assets/img/shop-decor.jpg'
-          alt=''
-        />
       </div>
       {/* <!-- SHOP EOF   --> */}
     </div>

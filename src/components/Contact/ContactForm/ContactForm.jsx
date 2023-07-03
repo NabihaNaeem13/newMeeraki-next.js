@@ -6,12 +6,27 @@ import Select from "@material-ui/core/Select";
 import { InputLabel } from "@material-ui/core";
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
+import Link from "next/dist/client/link";
+import { useFormik } from "formik";
+import { ContactSchema } from "Schemas";
+
+const initialValues={
+  name:"",
+  email:"",
+  phonenumber:"",
+  message:""
+  }
 
 export const ContactFrom = () => {
-  const [country, setCountry] = useState(" ");
-  const handleChangeCountry = (event) => {
-      setCountry(event.target.value);
-    };
+
+  const {errors,values,touched,handleBlur,handleChange,handleSubmit}=useFormik({
+    initialValues,
+    validationSchema:ContactSchema,
+    onSubmit:(values,action)=>{
+       console.log(values);
+       action.resetForm();
+    }
+  })
 
   return (
     <>
@@ -23,22 +38,28 @@ export const ContactFrom = () => {
       <div className="discount-info">
              <span className='main-text'>contact us</span>
              <p>
-              First Floor, 100 Alpha House, Borough High Street, London SE1 1LB United Kingdom 
+             - For order status inquiry, please <Link href="/trackOrder">click here</Link>
             </p>
             <p>
-              We are a 5-minute walk from both London Bridge and Borough tube station.
+            - To cancel and return ordered items, please log-in with your account <Link href="https://meeraki.com/staging/users/login" style={{color: "#1b1b28"}}>here</Link> and open a ticket.
             </p>
             <p>
-             Monday to Friday 6pm-8pm & WEEKENDS ONLY
+            - For other concerns, feel free to send us a message or contact us on below details:
             </p>
             <p>
-            NOTE:
-             Please use the side entrance on union street. When you reach the metal gate, please call 0207 509 6415 to let us know you've arrived, and we'll come to get you.  
+            EMAIL:
+            support@meeraki.com
+            </p>
+            <p>
+            Store Hours:
+            Monday-Saturday 9am - 10pm
+            Sunday 11am - 08pm
+
+
             </p>
             <ul>
-              <li className="mt-2 mb-2"><img src="/DermaestheticsAssests/1 Homepage/Footer/phone.svg" style={{width:"2rem",height:"2rem"}}/><a className="mx-4" style={{color:"#999999",fontSize:"1rem"}}>0207 509 6415</a></li>
-              <li className="mt-2 mb-2"><img src="/DermaestheticsAssests/1 Homepage/Footer/email.svg" style={{width:"2rem",height:"2rem"}}/><a className="mx-4" style={{color:"#999999",fontSize:"1rem"}}>info@dermaesthetics.uk</a></li>
-              <li className="mt-2 mb-2"><img src="/DermaestheticsAssests/1 Homepage/Footer/email.svg" style={{width:"2rem",height:"2rem"}}/><a className="mx-4" style={{color:"#999999",fontSize:"1rem"}}>bookingse1@dermaesthetics.uk</a></li>
+              <li className="mt-2 mb-2"><img src="/DermaestheticsAssests/1 Homepage/Footer/phone.svg" style={{width:"2rem",height:"2rem"}}/><a className="mx-4" style={{color:"#999999",fontSize:"1rem"}}>+92 308 786 9696</a></li>
+              <li className="mt-2 mb-2"><img src="/DermaestheticsAssests/1 Homepage/Footer/email.svg" style={{width:"2rem",height:"2rem"}}/><a className="mx-4" style={{color:"#999999",fontSize:"1rem"}}>support@meeraki.com</a></li>
             </ul>
            </div>
       </div>
@@ -48,61 +69,48 @@ export const ContactFrom = () => {
             <p style={{textAlign:"center"}}>
               Your email address will not be published.
             </p>
-            <form>
+            <form onSubmit={handleSubmit}>
               <div className='box-field'>
                 <input
                   type='text'
                   className='form-control'
                   placeholder='First Name'
-                />
-                <input
-                  type='text'
-                  className='form-control'
-                  placeholder='Last Name'
+                  name="name" autoComplete='off' value={values.name} onChange={handleChange} onBlur={handleBlur}
                 />
               </div>
+              {errors.name && touched.name ?(<p className='form-error'>{errors.name}</p>):null}
               <div className='box-field'>
-              <FormControl fullWidth className='form-control'>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={country}
-          label="Select Country"
-          onChange={handleChangeCountry}
-        >
-          <MenuItem value={"Germany"}>Germany</MenuItem>
-          <MenuItem value={"Pakistan"}>Pakistan</MenuItem>
-          <MenuItem value={"Norway"}>Norway</MenuItem>
-          <MenuItem value={"United Kingdom"}>United Kingdom</MenuItem>
-          <MenuItem value={"Norway"}>Norway</MenuItem>
-          <MenuItem value={"New Zealand"}>New Zealand</MenuItem>
-          <MenuItem value={"United Kingdom"}>United Kingdom</MenuItem>
-          <MenuItem value={"United Kingdom"}>United Kingdom</MenuItem>
-          <MenuItem value={"United Kingdom"}>United Kingdom</MenuItem>
-        </Select>
-      </FormControl>
-                <input
-                  type='date'
-                  className='form-control'
-                />
-              </div>
-              <div className='box-field'>
-                <input
+              <div>
+              <input
                   type='text'
                   className='form-control'
                   placeholder='Phone'
+                  name="phonenumber" autoComplete='off'
+    value={values.phonenumber} onChange={handleChange} onBlur={handleBlur}
                 />
+                
+   {errors.phonenumber && touched.phonenumber ?(<p className='form-error'>{errors.phonenumber}</p>):null} 
+              </div>
+                <div>
                 <input
                   type='email'
                   className='form-control'
                   placeholder='Email'
+                  autoComplete='off' name="email"
+    value={values.email} onChange={handleChange} onBlur={handleBlur}
                 />
+                {errors.email && touched.email ?(<p className='form-error'>{errors.email}</p>):null}
+                </div>
               </div>
               <div className='box-field box-field__textarea'>
                 <textarea
                   className='form-control'
                   placeholder='Enter your message'
+                  autoComplete='off'
+                  name="message"
+  value={values.message} onChange={handleChange} onBlur={handleBlur}
                 ></textarea>
+                 {errors.message && touched.message ?(<p className='form-error'>{errors.message}</p>):null}
               </div>
               <div className='box-field'>
               <FormControlLabel control={<Checkbox  />} label="I agree terms & condition" />

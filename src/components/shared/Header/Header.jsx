@@ -10,7 +10,7 @@ import {CiFacebook} from "react-icons/ci";
 import {TiSocialLinkedinCircular,TiSocialTwitterCircular} from "react-icons/ti"
 
 export const Header = () => {
-  const { cart } = useContext(CartContext);
+  const { cart,wishlist} = useContext(CartContext);
   const [fixedNav, setFixedNav] = useState(false);
 
   // For Fixed nav
@@ -67,6 +67,7 @@ export const Header = () => {
                 <Link href='/wishlist'>
                   <a>
                     <i className='icon-heart'></i>
+                    {wishlist && wishlist.length===0?"":<span>{wishlist.length}</span>}                    
                   </a>
                 </Link>
               </li>
@@ -74,7 +75,7 @@ export const Header = () => {
                 <Link href='/cart'>
                   <a>
                     <i className='icon-cart'></i>
-                    <span>{cart.length ?? '0'}</span>
+                    {cart.length===0?"":<span>{cart.length ?? '0'}</span>}
                   </a>
                 </Link>
               </li>

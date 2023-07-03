@@ -11,7 +11,7 @@ export const Card = ({ blog }) => {
         </a>
         <p className='para_mycard' style={{fontWeight: "800"}}>{image_title}</p>
         <p className='para_mycard' style={{color:"black"}}>{subtitle}</p>
-      <Link href={`/blog/${id}`}>
+      <Link href={`/subcategory/${image_title}`}>
         <p  style={{textAlign:"center"}}><button style={{lineHeight: "59px",border:"2px solid #999999",color:"#999999",fontSize:"14px",padding: "0 50px",height:"60px",background:"transparent",borderRadius:"10px"}}>
           Shop by category
         </button></p>

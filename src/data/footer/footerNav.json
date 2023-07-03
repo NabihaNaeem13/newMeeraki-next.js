@@ -4,19 +4,19 @@
     "navLinks": [
       {
         "name": "Privacy policy",
-        "path": "/categories"
+        "path": "/Privacy"
       },
       {
         "name": "Delivery Policy",
-        "path": "/categories"
+        "path": "/DeliveryPolicy"
       },
       {
         "name": "Return Policy",
-        "path": "/categories"
+        "path": "/ReturnPolicy"
       },
       {
         "name": "Terms and Conditions",
-        "path": "/categories"
+        "path": "/terms"
       },
       {
         "name": "About",
@@ -28,7 +28,7 @@
       },
       {
         "name": "Contact Details",
-        "path": "/categories"
+        "path": "/contact"
       }
     ]
   }

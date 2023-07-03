@@ -483,9 +483,10 @@ background-color: #ffff;
 @media screen and (max-width: 767px) {
   .btn-menu {
     display: block;
+    top: 80%;
   }
   .header-content {
-    padding: 45px 15px 0;
+    padding: 76px 15px 0;
   }
   .header-top span {
     font-size: 9px;
@@ -568,5 +569,8 @@ background-color: #ffff;
   }
   .header-nav li:hover:after {
     display: none;
+  }
+  .main-block {
+    min-height: 37vh !important;
   }
 }

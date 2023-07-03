@@ -8,7 +8,7 @@ export const Nav = ({ navItem }) => {
     <ul className='header-nav'>
       {navItem.map((nav) => (
         <li key={nav.path}>
-          <Link href={nav.path}>
+          <Link href={`/subcategory/${nav.name}`}>
             <a className={nav.path === router.pathname ? 'active' : ''}>
               {nav.name}
             </a>

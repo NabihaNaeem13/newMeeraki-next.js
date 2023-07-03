@@ -17,24 +17,6 @@ export const Faq = () => {
       {/* <!-- BEGIN FAQ --> */}
       <div className='faq'>
         <div className='wrapper'>
-          <div className='faq-search'>
-            <form>
-              <div className='box-field__row box-field__row-search'>
-                <div className='box-field'>
-                  <input
-                    type='search'
-                    className='form-control'
-                    placeholder='Search'
-                  />
-                </div>
-                <button type='submit' className='btn btn-icon'>
-                  {' '}
-                  <i className='icon-search'></i> search
-                </button>
-              </div>
-            </form>
-          </div>
-
           <div className='faq-items'>
             {faqs.map((faq, index) => (
               <div
@@ -64,13 +46,28 @@ export const Faq = () => {
             </a>
           </div>
         </div>
-        <img
-          className='promo-video__decor js-img'
-          src='/assets/img/promo-video__decor.jpg'
-          alt=''
-        />
       </div>
       {/* <!-- FAQ EOF   --> */}
     </>
   );
 };
+
+/*
+ <div className='faq-search'>
+            <form>
+              <div className='box-field__row box-field__row-search'>
+                <div className='box-field'>
+                  <input
+                    type='search'
+                    className='form-control'
+                    placeholder='Search'
+                  />
+                </div>
+                <button type='submit' className='btn btn-icon'>
+                  {' '}
+                  <i className='icon-search'></i> search
+                </button>
+              </div>
+            </form>
+          </div>
+ */

@@ -1,12 +1,17 @@
 import Link from 'next/link';
+import { CartContext } from 'pages/_app';
+import { useContext } from 'react';
 
 export const SingleProduct = ({
   product,
   onAddToWish,
   onAddToCart,
   addedInCart,
+  addedInwishCard
 }) => {
   const { name,thumbnail_image,hover_image,base_price,id,category_name,current_price,product_sku,current_stock,variant} = product;
+  const {user,user_id}=useContext(CartContext);
+  console.log("user",user.value ,"user_id",user_id);
   return (
     <>
       {/* <!-- BEING SINGLE PRODUCT ITEM --> */}
@@ -20,7 +25,7 @@ export const SingleProduct = ({
               </a>
             </Link>
             <div className='products-item__hover-options'>
-              <button className='addList' onClick={() => onAddToWish(id)}>
+              <button  className={`addList ${addedInwishCard ? 'added' : ''}`} onClick={() => onAddToWish(id,user.value,user_id)}>
                 <i className='icon-heart'></i>
               </button>
               <button

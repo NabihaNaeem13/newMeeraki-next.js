@@ -1,10 +1,11 @@
 import productData from 'data/product/product';
 import { Card } from './Card/Card';
 import Link from 'next/link';
+import { useContext } from 'react';
+import { CartContext } from 'pages/_app';
 
 export const Wishlist = () => {
-  const wishItems = [...productData].slice(0, 2);
-  wishItems[1].isStocked = false;
+  const {wishlist}=useContext(CartContext);
 
   return (
     <>
@@ -18,17 +19,15 @@ export const Wishlist = () => {
                 <div className='cart-table__col'>Price</div>
                 <div className='cart-table__col'>status</div>
                 <div className='cart-table__col'>Add to cart</div>
+                <div className='cart-table__col'>Remove</div>
               </div>
 
-              {wishItems.map((wish) => (
+              {wishlist && wishlist.map((wish) => (
                 <Card key={wish.id} wish={wish} />
               ))}
             </div>
           </div>
           <div className='wishlist-buttons'>
-            <a href='#' className='btn btn-grey'>
-              clear Wishlist
-            </a>
             <Link href='/shop'>
               <a className='btn'>go shopping</a>
             </Link>
