@@ -4,7 +4,6 @@ import Slider from 'react-slick';
 
 
 const ImageSlider = ({productimage}) => {
-    console.log("productimage",productimage);
     const [nav1, setNav1] = useState();
     const [nav2, setNav2] = useState();
   return (
@@ -20,9 +19,6 @@ const ImageSlider = ({productimage}) => {
                {productimage && productimage.map((img,index)=>{
                 return(
                     <div key={index} className='product-slider__main-item'>
-                      <div className='products-item__type'>
-                          <span className='products-item__sale'><FaRegHeart style={{fontSize:"2rem"}}/></span>
-                      </div>
                       <img src={`https://meeraki.com/public/${img}`} alt='product' />
                     </div>
                 )
@@ -53,3 +49,7 @@ const ImageSlider = ({productimage}) => {
 }
 
 export default ImageSlider
+
+/*   <div className='products-item__type'>
+                          <span className='products-item__sale'><FaRegHeart style={{fontSize:"2rem"}}/></span>
+                      </div> */

@@ -6,7 +6,6 @@ import { useEffect, useState } from 'react';
 import Dropdown from 'react-dropdown';
 import { AsideItem } from '../shared/AsideItem/AsideItem';
 import { SectionTitle } from 'components/shared/SectionTitle/SectionTitle';
-import { useProductContext } from 'Context/ProductContext';
 import Link from "next/link";
 import { useRouter } from 'next/router';
 
@@ -30,23 +29,20 @@ const name=[
   {id:7,name:"READY TO WEAR"},
   {id:8,name:"UNSTITCHED"},
 ]
-export const Shop = () => {
-  const {readyToWear}=useProductContext();
-  const router=useRouter();
-  const allProducts = [...readyToWear];
-
+export const ShopCategory = ({productdata}) => {
+  const allProducts = [...productdata];
+const router=useRouter();
   const [productOrder, setProductOrder] = useState(
     allProducts.sort((a, b) => (a.current_price < b.current_price ? 1 : -1))
   );
-  const [input,setInput]=useState();
   const [products, setProducts] = useState(productOrder);
   const [filter, setFilter] = useState({ isNew: false, isSale: true });
-
+  const [input,setInput]=useState();
   useEffect(() => {
     setProductOrder(productOrder);
   }, [productOrder]);
 
-  console.log("allProducts:",products);
+
 
   useEffect(() => {
     if (filter.isNew && filter.isSale) {

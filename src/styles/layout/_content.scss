@@ -3159,8 +3159,41 @@ blockquote,
 }
 
 // product page
+
+//radiobtn
+.radio-input-container{
+  position: relative;
+  height: 5rem;
+  width: 7rem;
+  margin:0rem 0.5rem;
+}
+.radio-input-container .input-radio{
+position: absolute;
+width: 100%;
+height: 100%;
+margin: 0;
+cursor: pointer;
+z-index: 2;
+opacity: 0;
+}
+.radio-input-container .ratio-title{
+height: 50%;
+text-align: center;
+border: 1px solid rgb(216, 213, 213);
+border-radius: 5px;
+padding: 0.6rem;
+transition: all 300ms ease;
+}
+.radiocheck{
+  border: 2px solid #d05278;
+box-shadow: 0 0 12px #d05278;
+}
+.input-radio:checked + .ratio-title{
+border: 2px solid #d05278;
+box-shadow: 0 0 12px #d05278;
+}
 .product {
-  padding-top: 180px;
+  padding-top: 35px;
 
   .promo-video__decor {
     top: 11.7%;
@@ -3278,8 +3311,8 @@ blockquote,
   }
 
   &-options {
-    margin-top: 46px;
-    padding-top: 45px;
+    margin-top: 0px;
+    padding-top: 25px;
     border-top: 1px solid #eee;
     display: flex;
     justify-content: space-between;

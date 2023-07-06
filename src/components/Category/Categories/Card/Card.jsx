@@ -8,7 +8,7 @@ export const Card = ({ category }) => {
         <img src={`https://meeraki.com/public/${thumbnail_image}`} className='js-img' alt='' />
         <div className='top-categories__item-hover'>
           <h5>{name}</h5>
-          <span>browse products -</span>
+          <span>browse product -</span>
           <i className='icon-arrow-lg'></i>
         </div>
       </a>

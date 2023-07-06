@@ -4,15 +4,18 @@ import { useRouter } from 'next/router';
 import { CartContext } from 'pages/_app';
 import { useProductContext } from 'Context/ProductContext';
 import ImageSlider from './ImageSlider';
+import { FaRegHeart } from 'react-icons/fa';
 
 export const ProductDetails = () => {
   const router = useRouter();
-  const { cart, setCart } = useContext(CartContext);
+  const { cart, setCart,wishlist } = useContext(CartContext);
   const {getSingleProduct,singleProduct}=useProductContext();
   const socialLinks = [...socialData];
   const [product, setProduct] = useState(null);
+  const choice=singleProduct.choice_options && singleProduct.choice_options[0].values[0]
+  const [productSize,setProductSize]=useState(choice);
   const [addedInCart, setAddedInCart] = useState(false);
-
+  console.log("singleProduct",singleProduct,"wishlist",wishlist,"productSize",productSize);
   useEffect(() => {
     if (router.query.product_id) {
       getSingleProduct(`https://meeraki.com/api/v2/products/${router.query.product_id}`)
@@ -43,7 +46,13 @@ export const ProductDetails = () => {
             {/* <!-- Product Main Slider --> */}
             <ImageSlider productimage={singleProduct.photos}/>
             <div className='product-info'>
-              <h3>{singleProduct.name}</h3>
+              <h3>{singleProduct.name}{wishlist&& wishlist.map((item)=>{
+                return(
+                  <>
+                  {item.product.id===singleProduct.id?<span className='products-item__sale'><FaRegHeart style={{fontSize:"2.5rem",color:"red"}}/></span>:""}
+                  </>
+                )
+              })}</h3>
               {singleProduct.current_stock? (
                 <span className='product-stock'>in stock</span>
               ) : (
@@ -74,6 +83,46 @@ export const ProductDetails = () => {
                 </ul>
               </div>
 
+              <form id="option-choice-form">
+                       {singleProduct.choice_options?<> {Object.keys(singleProduct.choice_options).map((item)=>{
+                          return(
+                            <div className='product-info__color' key={singleProduct.choice_options[item].title}>
+                             <span>Size:</span>
+                             <div className='col-sm-12'>
+                            <div className='d-md-flex align-items-center py-md-2 mb-md-2 smalls'>
+                           {singleProduct.choice_options[item].values[0] && <div className='radio-input-container'>
+                    <input type="radio" name="ratio" className="input-radio" value={singleProduct.choice_options[item].values[0]} onChange={(e)=>setProductSize(e.target.value)} defaultChecked/>
+                    <div className='ratio-title'>
+                      <label htmlFor="walk-radio">{singleProduct.choice_options[item].values[0]}</label>
+                    </div></div> }
+                    {singleProduct.choice_options[item].values[1] && <div className='radio-input-container'>
+                    <input type="radio" name="ratio" className="input-radio" value={singleProduct.choice_options[item].values[1]} onChange={(e)=>setProductSize(e.target.value)}/>
+                    <div className='ratio-title'>
+                      <label htmlFor="walk-radio">{singleProduct.choice_options[item].values[1]}</label>
+                    </div></div> }
+                    {singleProduct.choice_options[item].values[2] &&   <div className='radio-input-container'>
+                    <input type="radio" name="ratio" className="input-radio" value={singleProduct.choice_options[item].values[2]} onChange={(e)=>setProductSize(e.target.value)}/>
+                    <div className='ratio-title'>
+                      <label htmlFor="walk-radio">{singleProduct.choice_options[item].values[2]}</label>
+                    </div></div> }
+                    {singleProduct.choice_options[item].values[3] &&   <div className='radio-input-container'>
+                    <input type="radio" name="ratio" className="input-radio" value={singleProduct.choice_options[item].values[3]} onChange={(e)=>setProductSize(e.target.value)}/>
+                    <div className='ratio-title'>
+                      <label htmlFor="walk-radio">{singleProduct.choice_options[item].values[3]}</label>
+                    </div></div> }
+                  {singleProduct.choice_options[item].values[4] && <div className='radio-input-container'>
+                    <input type="radio" name="ratio" className="input-radio" value={singleProduct.choice_options[item].values[4]} onChange={(e)=>setProductSize(e.target.value)}/>
+                    <div className='ratio-title'>
+                      <label htmlFor="walk-radio">{singleProduct.choice_options[item].values[4]}</label>
+                    </div></div> }
+                             </div></div>
+                            </div>
+                          )
+                         })}
+                         </>:""
+                        }
+                        </form>
+
               {/* <!-- Product Color info--> */}
               <div className='product-options'>
                 {/*<div className='product-info__color'>
@@ -89,6 +138,7 @@ export const ProductDetails = () => {
                     ))}
                   </ul>
                 </div>/*}
+
 
                 {/* <!-- Order Item counter --> */}
                 <div className='product-info__quantity'>
@@ -121,6 +171,8 @@ export const ProductDetails = () => {
                   </div>
                 </div>
               </div>
+
+              
               <div className='product-buttons'>
                 <button
                   disabled={addedInCart}
@@ -146,12 +198,24 @@ export const ProductDetails = () => {
                 >
                   Description
                 </li>
+                <li
+                  className={tab === 2 ? 'active' : ''}
+                  onClick={() => setTab(2)}
+                >
+                  Size Chart
+                </li>
               </ul>
               <div className='box-tab-cont'>
                 {/* <!-- Product description --> */}
                 {tab === 1 && (
                   <div className='tab-cont'>
                    <div className='mt-2' dangerouslySetInnerHTML={{__html: singleProduct.description}}></div>
+                  </div>
+                )}
+                {tab === 2 && (
+                  <div className='tab-cont'>
+                   {singleProduct.category==="New Arrivals"||singleProduct.category==="Unstitched"?<img src="/assets/img/meerakisizechart.jpg" alt="sizeChart"/>:""}
+                   {singleProduct.category==="Formal Edit"||singleProduct.category==="Festive Pret"?<img src="/assets/img/newarrival-sizechart1.jpg" alt="sizeChart"/>:""}
                   </div>
                 )}
               </div>
