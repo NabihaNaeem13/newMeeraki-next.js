@@ -103,25 +103,6 @@ export const OrderConfirmCheckout = () => {
                                 <h5 className="fw-600 mb-3 fs-17 pb-2">Order Summary</h5>
                                 <div className="row">
                                     <div className="col-md-6">
-                                        <table className="table">
-                                            <tbody><tr>
-                                                <td className="w-50 fw-600">Order Code:</td>
-                                                <td>{searchedProduct.code && searchedProduct.code}</td>
-                                            </tr>
-                                            {searchedProduct.shipping_address && <> <tr>
-                                                <td className="w-50 fw-600">Name:</td>
-                                                <td>{searchedProduct.shipping_address.name && searchedProduct.shipping_address.name}</td>
-                                            </tr>
-                                            <tr>
-                                                <td className="w-50 fw-600">Email:</td>
-                                                <td>{searchedProduct.shipping_address.email && searchedProduct.shipping_address.email}</td>
-                                            </tr>
-                                            <tr>
-                                                <td className="w-50 fw-600">Shipping Address:</td>
-                                                <td>{searchedProduct.shipping_address.address && searchedProduct.shipping_address.address}, {searchedProduct.shipping_address.city && searchedProduct.shipping_address.city}, {searchedProduct.shipping_address.country && searchedProduct.shipping_address.country}</td>
-                                            </tr></>}
-                                           
-                                        </tbody></table>
                                     </div>
                                     <div className="col-md-6">
                                         <table className="table">
@@ -233,7 +214,25 @@ export const OrderConfirmCheckout = () => {
         </div>
     </section>
                   </div>
-    {/* <!-- CHECKOUT EOF   --> */}
+    {/* <!-- CHECKOUT EOF   <table className="table">
+                                            <tbody><tr>
+                                                <td className="w-50 fw-600">Order Code:</td>
+                                                <td>{searchedProduct.code && searchedProduct.code}</td>
+                                            </tr>
+                                            {searchedProduct.shipping_address && <> <tr>
+                                                <td className="w-50 fw-600">Name:</td>
+                                                <td>{searchedProduct.shipping_address.name && searchedProduct.shipping_address.name}</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="w-50 fw-600">Email:</td>
+                                                <td>{searchedProduct.shipping_address.email && searchedProduct.shipping_address.email}</td>
+                                            </tr>
+                                            <tr>
+                                                <td className="w-50 fw-600">Shipping Address:</td>
+                                                <td>{searchedProduct.shipping_address.address && searchedProduct.shipping_address.address}, {searchedProduct.shipping_address.city && searchedProduct.shipping_address.city}, {searchedProduct.shipping_address.country && searchedProduct.shipping_address.country}</td>
+                                            </tr></>}
+                                           
+                                        </tbody></table>  --> */}
   </>
   )
 }
