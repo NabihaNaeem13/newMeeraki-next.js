@@ -2,7 +2,7 @@ import { SignupSchema } from 'Schemas';
 import axios from 'axios';
 import { SocialLogin } from 'components/shared/SocialLogin/SocialLogin';
 import { useFormik } from 'formik';
-import router from 'next/router';
+import Router from 'next/router';
 import { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -39,7 +39,7 @@ const onSubmit = async (values,action) =>{
       theme: "light",
       });
      localStorage.setItem("token", response.data.access_token);  
-     router.push('/');
+     Router.push('/');
      formik.action.resetForm();
    }else {
      toast.error(response.data.message, {

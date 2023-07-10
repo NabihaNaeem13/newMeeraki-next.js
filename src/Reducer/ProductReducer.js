@@ -1,20 +1,20 @@
 const ProductReducer=(state,action)=>{
     switch(action.type){
-        case "SET_LOADING":
+        case "SET_Unstitched_LOADING":
             return{
                 ...state,
-                isLoading:true
+                isUnstitchedLoading:true
             };
-            case "SET_API_DATA":
+            case "SET_UnstitchedAPI_DATA":
               return{
                 ...state,
-                isLoading:false,
-                endSeasonProduct:action.payload,
+                isUnstitchedLoading:false,
+                Unstitched:action.payload,
               }
-            case "API_ERROR":
+            case "APIUnstitched_ERROR":
                 return{
                     ...state,
-                    isLoading:true,
+                    isUnstitchedLoading:true,
                     isError:true
                 };
                 case "SET_CURRENCY_LOADING":
@@ -155,6 +155,60 @@ const ProductReducer=(state,action)=>{
                     isFormalEditLoading:true,
                     isError:true
                 };
+                //1 piece suit
+              case "SET_1PieceSuit_LOADING":
+                return{
+                    ...state,
+                    ispieceSuit1Loading:true
+                };
+                case "SET_1PieceSuit_DATA":
+                  return{
+                    ...state,
+                    ispieceSuit1Loading:false,
+                    pieceSuit1:action.payload,
+                  }
+                case "API_1PieceSuit_ERROR":
+                  return{
+                    ...state,
+                    ispieceSuit1Loading:true,
+                    isError:true
+                };
+              //2 piece suit
+              case "SET_2PieceSuit_LOADING":
+                return{
+                    ...state,
+                    ispieceSuit2Loading:true
+                };
+                case "SET_2PieceSuit_DATA":
+                  return{
+                    ...state,
+                    ispieceSuit2Loading:false,
+                    pieceSuit2:action.payload,
+                  }
+                case "API_2PieceSuit_ERROR":
+                  return{
+                    ...state,
+                    ispieceSuit2Loading:true,
+                    isError:true
+                };
+                //3 piece suit
+              case "SET_3PieceSuit_LOADING":
+                return{
+                    ...state,
+                    ispieceSuit3Loading:true
+                };
+                case "SET_3PieceSuit_DATA":
+                  return{
+                    ...state,
+                    ispieceSuit3Loading:false,
+                    pieceSuit3:action.payload,
+                  }
+                case "API_3PieceSuit_ERROR":
+                  return{
+                    ...state,
+                    ispieceSuit3Loading:true,
+                    isError:true
+                };
               //basics product
               case "SET_Basics_LOADING":
                   return{
@@ -233,6 +287,24 @@ const ProductReducer=(state,action)=>{
                     isReadyToWearLoading:true,
                     isError:true
                 };
+                //pruchase history
+                case "SET_PurchaseHistory_LOADING":
+                  return{
+                      ...state,
+                      isPurchaseHistoryLoading:true
+                  };
+            case "SET_PurchaseHistory":
+              return{
+                ...state,
+                isPurchaseHistoryLoading:false,
+                PurchaseHistory:action.payload,
+              };
+              case "SET_PurchaseHistory_Error":
+                return{
+                    ...state,
+                    isPurchaseHistoryLoading:true,
+                    isError:true
+                };
                 //all categories
                 case "SET_ALLCategories_LOADING":
                   return{
@@ -255,6 +327,42 @@ const ProductReducer=(state,action)=>{
                 return{
                     ...state,
                     isAllCategoriesLoading:true,
+                    isError:true
+                };
+                //SalesProduct
+                case "SET_Sales_LOADING":
+                  return{
+                      ...state,
+                      isSalesLoading:true
+                  };
+                  case "SET_SalesAPI_DATA":
+              return{
+                ...state,
+                isSalesLoading:false,
+                Sales:action.payload,
+              };
+              case "API_Sales_ERROR":
+                return{
+                    ...state,
+                    isSalesLoading:true,
+                    isError:true
+                };
+                //fiftyperSale
+                case "SET_FiftyPercentSale_LOADING":
+                  return{
+                      ...state,
+                      isFiftyPercentSaleLoading:true
+                  };
+                  case "SET_FiftyPercentSale_DATA":
+              return{
+                ...state,
+                isFiftyPercentSaleLoading:false,
+                FiftyPercentSale:action.payload,
+              };
+              case "FiftyPercentSale_API_ERROR":
+                return{
+                    ...state,
+                    isFiftyPercentSaleLoading:true,
                     isError:true
                 };
                 //featureProduct

@@ -1,5 +1,4 @@
 import React,{ useState } from 'react'
-import { FaRegHeart } from 'react-icons/fa';
 import Slider from 'react-slick';
 
 

@@ -5,17 +5,20 @@ import { CartContext } from 'pages/_app';
 import { useProductContext } from 'Context/ProductContext';
 import ImageSlider from './ImageSlider';
 import { FaRegHeart } from 'react-icons/fa';
+import { SizeModel } from './SizeModel';
+import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
 
 export const ProductDetails = () => {
   const router = useRouter();
-  const { cart, setCart,wishlist } = useContext(CartContext);
+  const { cart, setCart,wishlist,setwishlist } = useContext(CartContext);
   const {getSingleProduct,singleProduct}=useProductContext();
   const socialLinks = [...socialData];
   const [product, setProduct] = useState(null);
-  const choice=singleProduct.choice_options && singleProduct.choice_options[0].values[0]
+  const choice=singleProduct.variants && singleProduct.variants[0].value
   const [productSize,setProductSize]=useState(choice);
   const [addedInCart, setAddedInCart] = useState(false);
-  console.log("singleProduct",singleProduct,"wishlist",wishlist,"productSize",productSize);
+  const [addedInWishlist, setAddedInWishlist] = useState(false);
   useEffect(() => {
     if (router.query.product_id) {
       getSingleProduct(`https://meeraki.com/api/v2/products/${router.query.product_id}`)
@@ -25,16 +28,125 @@ export const ProductDetails = () => {
   useEffect(() => {
     if (singleProduct) {
       setAddedInCart(Boolean(cart?.find((pd) => pd.id === singleProduct.id)));
+      setAddedInWishlist(Boolean(wishlist?.find((pd) => pd.id === singleProduct.id)));
     }
   }, [singleProduct, cart]);
 
   const [quantity, setQuantity] = useState(1);
   const [tab, setTab] = useState(2);
 
-  const handleAddToCart = () => {
-    const newProduct = { ...singleProduct, quantity: quantity };
-    setCart([...cart, newProduct]);
+  const handleAddToCart = async(product_id,variant,quantity) => {
+    try{
+      const token=localStorage.getItem('token');
+      const User=localStorage.getItem('User');
+      const user_id=parseInt(User);
+      const res=await axios.post('https://meeraki.com/api/v2/carts/add',{user_id,product_id,variant,quantity},{
+        headers: {
+          Authorization: 'Bearer ' + token//the token is a variable which holds the token
+        }
+      })
+      if(res.data.result===false){
+        toast.error(res.data.message, {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          });
+      }else{
+        toast.success(res.data.message, {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          });
+          const newProduct = { ...singleProduct,productSize:productSize,quantity: quantity };
+          setCart([...cart, newProduct]);
+      }
+      console.log("card_res",res.data.result);
+    }catch(err){
+      if(err.response.status===401){
+        toast.error(err.response.data.message, {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          });
+      }
+      console.log(err);
+    }
   };
+
+  const handleAddToWishlist =async(product_id,base_price,current_stock,thumbnail_image,name) => {
+    const token=localStorage.getItem('token');
+      const User=localStorage.getItem('User');
+      const user_id=parseInt(User);
+    try{
+       const res=await axios.get(`https://meeraki.com/api/v2/wishlists-add-product/${product_id}/${user_id}`,{
+        headers: {
+          Authorization: 'Bearer ' + token //the token is a variable which holds the token
+        }
+       });
+       console.log("res",res.data.message);
+       if(res.data.is_in_wishlist===true){
+        toast.success(res.data.message, {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          }); 
+          const newProduct = singleProduct?.find((pd) => pd.id === product_id);
+          setwishlist([...wishlist, { ...newProduct,product:{base_price:base_price,name:name,thumbnail_image:thumbnail_image,id:product_id,current_stock:current_stock}}]);
+       }
+    }catch(err){
+      if(err.response.status===401){
+        toast.error('Please login your account', {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          }); 
+       }
+      }
+  };
+
+  const updatePrice=()=>{
+    if(productSize==="Small"){
+      return singleProduct.variants[0].price*quantity
+    }
+    else if(productSize==="Medium"){
+      return singleProduct.variants[1].price*quantity
+    }
+    else if(productSize==="Large" || productSize==="X-Large"){
+      return singleProduct.variants[2].price*quantity
+    }
+    else if(productSize==="X-Large"){
+      return singleProduct.variants[3].price*quantity
+    }
+    else{
+       return singleProduct.current_price*quantity
+    }
+  }
+
 
   if (!singleProduct) return <></>;
   return (
@@ -52,17 +164,16 @@ export const ProductDetails = () => {
                   {item.product.id===singleProduct.id?<span className='products-item__sale'><FaRegHeart style={{fontSize:"2.5rem",color:"red"}}/></span>:""}
                   </>
                 )
-              })}</h3>
+              })}</h3>/{singleProduct.unit}
               {singleProduct.current_stock? (
                 <span className='product-stock'>in stock</span>
               ) : (
-                ''
+                <span className='product-stock' style={{color:"red"}}>out of stock</span>
               )}
-        
               <span className='product-num'>SKU: {singleProduct.product_sku}</span>
               {singleProduct.oldPrice ? (
                 <span className='product-price'>
-                  <span>${singleProduct.oldPrice}</span>{singleProduct.base_price}
+                  <span>{singleProduct.oldPrice}</span>{singleProduct.base_price}
                 </span>
               ) : (
                 <span className='product-price'>{singleProduct.base_price}</span>
@@ -84,45 +195,27 @@ export const ProductDetails = () => {
               </div>
 
               <form id="option-choice-form">
-                       {singleProduct.choice_options?<> {Object.keys(singleProduct.choice_options).map((item)=>{
-                          return(
-                            <div className='product-info__color' key={singleProduct.choice_options[item].title}>
+              <div className='product-info__color'>
                              <span>Size:</span>
                              <div className='col-sm-12'>
                             <div className='d-md-flex align-items-center py-md-2 mb-md-2 smalls'>
-                           {singleProduct.choice_options[item].values[0] && <div className='radio-input-container'>
-                    <input type="radio" name="ratio" className="input-radio" value={singleProduct.choice_options[item].values[0]} onChange={(e)=>setProductSize(e.target.value)} defaultChecked/>
-                    <div className='ratio-title'>
-                      <label htmlFor="walk-radio">{singleProduct.choice_options[item].values[0]}</label>
-                    </div></div> }
-                    {singleProduct.choice_options[item].values[1] && <div className='radio-input-container'>
-                    <input type="radio" name="ratio" className="input-radio" value={singleProduct.choice_options[item].values[1]} onChange={(e)=>setProductSize(e.target.value)}/>
-                    <div className='ratio-title'>
-                      <label htmlFor="walk-radio">{singleProduct.choice_options[item].values[1]}</label>
-                    </div></div> }
-                    {singleProduct.choice_options[item].values[2] &&   <div className='radio-input-container'>
-                    <input type="radio" name="ratio" className="input-radio" value={singleProduct.choice_options[item].values[2]} onChange={(e)=>setProductSize(e.target.value)}/>
-                    <div className='ratio-title'>
-                      <label htmlFor="walk-radio">{singleProduct.choice_options[item].values[2]}</label>
-                    </div></div> }
-                    {singleProduct.choice_options[item].values[3] &&   <div className='radio-input-container'>
-                    <input type="radio" name="ratio" className="input-radio" value={singleProduct.choice_options[item].values[3]} onChange={(e)=>setProductSize(e.target.value)}/>
-                    <div className='ratio-title'>
-                      <label htmlFor="walk-radio">{singleProduct.choice_options[item].values[3]}</label>
-                    </div></div> }
-                  {singleProduct.choice_options[item].values[4] && <div className='radio-input-container'>
-                    <input type="radio" name="ratio" className="input-radio" value={singleProduct.choice_options[item].values[4]} onChange={(e)=>setProductSize(e.target.value)}/>
-                    <div className='ratio-title'>
-                      <label htmlFor="walk-radio">{singleProduct.choice_options[item].values[4]}</label>
-                    </div></div> }
-                             </div></div>
-                            </div>
-                          )
-                         })}
-                         </>:""
-                        }
+                            {singleProduct.variants?<>{Object.keys(singleProduct.variants).map((item)=>{
+                              console.log("setProductSize",singleProduct.variants[item].value)
+                             return(
+                                 <div className='radio-input-container' key={singleProduct.variants[item].value}>
+                                    <input type="radio" name="ratio" className="input-radio" value={singleProduct.variants[item].value} onChange={(e)=>setProductSize(singleProduct.variants[item].value)} onClick={(e)=>setProductSize(e.target.value)} defaultChecked/>
+                                    <div className='ratio-title'>
+                                       <label htmlFor="walk-radio">{singleProduct.variants[item].value}</label>
+                                    </div>
+                                 </div>       
+                 )
+              })}</>:""}
+                           </div>
+                           </div>
+              </div>
                         </form>
-
+               <SizeModel category={singleProduct.category}/>
+            
               {/* <!-- Product Color info--> */}
               <div className='product-options'>
                 {/*<div className='product-info__color'>
@@ -163,7 +256,9 @@ export const ProductDetails = () => {
                       value={quantity}
                     />
                     <span
-                      onClick={() => setQuantity(quantity + 1)}
+                      onClick={() => {
+                        setQuantity(quantity + 1)
+                      }}
                       className='counter-link counter-link__next'
                     >
                       <i className='icon-arrow'></i>
@@ -172,16 +267,19 @@ export const ProductDetails = () => {
                 </div>
               </div>
 
-              
+              <span className='product-info__quantity-title'>
+                    Total:
+              </span>
+              <span className='product-price'>{updatePrice()}</span>
               <div className='product-buttons'>
                 <button
                   disabled={addedInCart}
-                  onClick={() => handleAddToCart()}
+                  onClick={() => handleAddToCart(singleProduct.id,productSize,quantity)}
                   className='btn btn-icon'
                 >
                   <i className='icon-cart'></i> cart
                 </button>
-                <button className='btn btn-grey btn-icon' style={{backgroundColor:"#ffff",color:"#999999",border:"1px solid #99999"}}>
+                <button disabled={addedInWishlist} className='btn btn-grey btn-icon' style={{backgroundColor:"#ffff",color:"#999999",border:"1px solid #99999"}} onClick={() => handleAddToWishlist(singleProduct.id,singleProduct.base_price,singleProduct.current_stock,singleProduct.thumbnail_image,singleProduct.name)}>
                   <i className='icon-heart'></i> wish
                 </button>
               </div>
@@ -198,24 +296,12 @@ export const ProductDetails = () => {
                 >
                   Description
                 </li>
-                <li
-                  className={tab === 2 ? 'active' : ''}
-                  onClick={() => setTab(2)}
-                >
-                  Size Chart
-                </li>
               </ul>
               <div className='box-tab-cont'>
                 {/* <!-- Product description --> */}
                 {tab === 1 && (
                   <div className='tab-cont'>
                    <div className='mt-2' dangerouslySetInnerHTML={{__html: singleProduct.description}}></div>
-                  </div>
-                )}
-                {tab === 2 && (
-                  <div className='tab-cont'>
-                   {singleProduct.category==="New Arrivals"||singleProduct.category==="Unstitched"?<img src="/assets/img/meerakisizechart.jpg" alt="sizeChart"/>:""}
-                   {singleProduct.category==="Formal Edit"||singleProduct.category==="Festive Pret"?<img src="/assets/img/newarrival-sizechart1.jpg" alt="sizeChart"/>:""}
                   </div>
                 )}
               </div>

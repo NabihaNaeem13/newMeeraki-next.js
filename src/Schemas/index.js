@@ -44,10 +44,10 @@ export const ShippingUserSchema=Yup.object({
     email:Yup.string().email("Please enter a valid email address").required("Email address is required!"),
     password:Yup.string().min(6).required("password is required!"),
     phone: Yup.string().matches(phoneRegex, "Invalid phone").required("Phone Number is required"),
-    address:Yup.string().min(10).max(20).required("Please enter your address!"),
+    address:Yup.string().min(10).max(20).required("Please enter the address!"),
     country:Yup.string().min(4).max(20).required("Please select a country!"),
-    city:Yup.string().min(4).max(20).required("Please select a city!"),
-    postal_code:Yup.string().min(4).max(8).required("Please select a postal code!")
+    city:Yup.string().min(4).max(20).required("Please enter a city!"),
+    postal_code:Yup.string().min(4).max(8).required("Please enter the postal code!")
 })
 
 export const OrderformSchema=Yup.object({

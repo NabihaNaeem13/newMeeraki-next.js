@@ -134,6 +134,15 @@ const router=useRouter();
                  <li>
                   <Link href={`/shop/UNSTITCHED`}>UNSTITCHED</Link>
                  </li>
+                 <li>
+                  <Link href={`/shop/1 Piece Suit`}>1 PIECE SUIT</Link>
+                 </li>
+                 <li>
+                  <Link href={`/shop/2 Piece Suit`}>2 PIECE SUIT</Link>
+                 </li>
+                 <li>
+                  <Link href={`/shop/3 Piece Suit`}>3 PIECE SUIT</Link>
+                 </li>
                </ul>
               </div>
               <div className='shop-aside__item'>

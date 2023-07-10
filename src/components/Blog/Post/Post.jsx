@@ -1,4 +1,3 @@
-import blogData from 'data/blog/blog';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { PostComment } from './PostComment/PostComment';

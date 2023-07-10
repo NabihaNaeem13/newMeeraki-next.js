@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid';
 export const Card = ({ blog }) => {
   const { title, id, banner, short_description} = blog;
   return (
-    <div className='blog-item-grif'>
+    <div className='blog-item-grif' key={blog.id+title+11}>
       <Link href={`/blog/${id}`}>
         <a className='blog-item__img'>
           <img src={`https://meeraki.com/public/${banner}`} className='js-img' alt='' />

@@ -9,25 +9,25 @@ import { Trending } from 'components/landing/Trending/Trending';
 import { Subscribe } from 'components/shared/Subscribe/Subscribe';
 import { Layout } from 'layout/Layout';
 import {PopularTreatments} from "components/landing/PopularTreatment/PopularTreatments.jsx";
-import ShopProduct from 'components/landing/ShopProduct/ShopProduct';
-import BookNow from 'components/landing/BookNow/BookNow';
 import { useProductContext } from 'Context/ProductContext';
 import { VideoPromo } from 'components/landing/VideoPromo/VideoPromo';
+import { Insta } from 'components/shared/Insta/Insta';
 
 export default function Home() {
-  const {NewArrivalProduct,formalEdit,featureProduct,Banners,Blog,HomeImage4,ImageTwo}=useProductContext();
+  const {NewArrivalProduct,formalEdit,Unstitched,isUnstitchedLoading,FiftyPercentSale,Banners,Blog,Sales,InstaPhoto}=useProductContext();
+
   return (
     <Layout>
       <Banner banners={Banners}/>
       <Advantage/>
       <NewArrivals title="New Arrival Products" products={NewArrivalProduct}/>
-      <ShopProduct HomeImage4={HomeImage4}/>
+      <NewArrivals title="FORMAL EDIT" products={formalEdit}/>
+      <NewArrivals title="Upto 50% Off" products={FiftyPercentSale}/>
       <VideoPromo/>
-      <NewArrivals title="Featured Products" products={featureProduct}/>
-      <BookNow HomeImage4={HomeImage4}/>
-      <NewArrivals title="Formal Edit Products" products={formalEdit}/>
+      {!isUnstitchedLoading && <NewArrivals title="Unstitched" products={Unstitched}/>}
+      <NewArrivals title="Sale" products={Sales}/>
       <LatestNews blog={Blog} />
-      <Info ImageTwo={ImageTwo}/>
+      <Insta/>
     </Layout>
   );
 }

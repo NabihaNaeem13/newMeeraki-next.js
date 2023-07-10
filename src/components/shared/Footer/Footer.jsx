@@ -1,22 +1,17 @@
 import footerNavData from 'data/footer/footerNav';
-import footerNavData1 from 'data/footer/footerNav1';
 import paymentMethodData from 'data/footer/payment';
 import socialData from 'data/social';
 import Link from 'next/link';
 import { NavCol } from './NavCol/NavCol';
 import styled from 'styled-components';
-import {MdLocationPin} from "react-icons/md";
-import {BsFillTelephoneFill} from "react-icons/bs";
-import {IoIosMail} from "react-icons/io";
+import { CartContext } from 'pages/_app';
+import { useContext } from 'react';
 
 export const Footer = () => {
-  const footerLogo = '/DermaestheticsAssests/1 Homepage/Footer/Logo.png';
-
   const footerNav = [...footerNavData];
-  const footerNavPopular = [...footerNavData1];
   const footerSocial = [...socialData];
   const paymentMethods = [...paymentMethodData];
-
+   const {user,Logout}=useContext(CartContext);
   return (
     <>
       {/* <!-- BEGIN FOOTER --> */}
@@ -64,9 +59,37 @@ export const Footer = () => {
             {footerNav.map((nav, index) => (
               <NavCol nav={nav} key={index} />
             ))}
-            {footerNavPopular.map((nav, index) => (
-              <NavCol nav={nav} key={index} />
-            ))}
+            <div className='footer-nav__col'>
+      <span className='footer-nav__col-title'>MY ACCOUNT</span>
+      <ul>
+      {user.value?<li>
+              <a onClick={Logout}>Logout</a>
+          </li>:<><li>
+            <Link href='/login'>
+              <a>Login</a>
+            </Link>
+          </li>
+          <li><Link href='/registration'>
+              <a>Sign up</a>
+            </Link></li></>}
+      
+          <li>
+            <Link href='/purchase_history'>
+              <a>Order History</a>
+            </Link>
+          </li>
+          <li>
+            <Link href='/wishlist'>
+              <a>My Wishlist</a>
+            </Link>
+          </li>
+          <li>
+            <Link href='/trackOrder'>
+              <a>Track Order</a>
+            </Link>
+          </li>
+      </ul>
+    </div>
           </div>
           <div className='footer-copy'>
             <span>Copyright &copy; 2023 Meeraki. Developed by</span>

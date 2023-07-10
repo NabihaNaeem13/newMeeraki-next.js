@@ -4,7 +4,7 @@ export const PostContent = ({blog}) => {
   const {banner,long_description,created_at,meta_title}=blog;
   return (
     <>
-      <div className='post-top'>
+      <div className='post-top' key={meta_title}>
         <h2>{blog.title}</h2>
         <p>{blog.subTitle}</p>
         <img src={`https://meeraki.com/public/${banner}`} className='js-img' alt='' />

@@ -1,6 +1,5 @@
 import {ProductDetails} from 'components/Product/ProductDetails/ProductDetails';
 import { MostViewed } from 'components/shared/MostViewed/MostViewed';
-import { ShopLayout } from 'layout/ShopLayout';
 import { useRouter } from 'next/router';
 import React from 'react';
 import Link from "next/link";

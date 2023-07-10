@@ -6,7 +6,7 @@ import Select from "@material-ui/core/Select";
 import { InputLabel } from "@material-ui/core";
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
-import Link from "next/dist/client/link";
+import Link from "next/link";
 import { useFormik } from "formik";
 import { ContactSchema } from "Schemas";
 

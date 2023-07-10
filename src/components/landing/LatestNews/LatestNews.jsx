@@ -9,7 +9,7 @@ export const LatestNews = ({blog}) => {
     <>
       {/* <!-- BEGIN LATEST NEWS --> */}  
       <section className='latest-news'>
-        <div className='wrapper'>
+        <div className='wrapper' style={{maxWidth:"1340px"}}>
           <SectionTitle
             title='Our Latest Articles & Blogs'
           />

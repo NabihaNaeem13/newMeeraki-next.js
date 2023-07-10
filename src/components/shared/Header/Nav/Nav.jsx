@@ -5,9 +5,9 @@ export const Nav = ({ navItem }) => {
   const router = useRouter();
 
   return (
-    <ul className='header-nav'>
+    <ul className='header-destop-nav'>
       {navItem.map((nav) => (
-        <li key={nav.path}>
+        <li key={nav.path+nav.name}>
           <Link href={`/subcategory/${nav.name}`}>
             <a className={nav.path === router.pathname ? 'active' : ''}>
               {nav.name}

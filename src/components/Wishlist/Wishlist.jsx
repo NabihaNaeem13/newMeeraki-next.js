@@ -1,12 +1,18 @@
 import productData from 'data/product/product';
 import { Card } from './Card/Card';
 import Link from 'next/link';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { CartContext } from 'pages/_app';
+import Router from 'next/router';
 
 export const Wishlist = () => {
   const {wishlist}=useContext(CartContext);
-
+  console.log("wishlist",wishlist);
+  useEffect(()=>{
+    if(!localStorage.getItem('token')){
+      Router.push('/login')
+    }
+  },[])
   return (
     <>
       {/* <!-- BEGIN WISHLIST --> */}

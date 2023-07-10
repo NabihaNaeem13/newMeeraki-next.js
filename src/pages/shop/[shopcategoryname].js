@@ -19,8 +19,7 @@ const breadcrumbsData = [
 const Shopcategoryname = () => {
     const router=useRouter();
     const [productdata,setProductData]=useState();
-    const {readyToWear,NewArrivalProduct,formalEdit,basics,festivePret,winterWear}=useProductContext()
-
+    const {readyToWear,NewArrivalProduct,formalEdit,basics,festivePret,winterWear,pieceSuit1,pieceSuit2,pieceSuit3}=useProductContext();
     useEffect(()=>{
         if(router.query.shopcategoryname==='BASICS'){
             setProductData(basics);
@@ -46,6 +45,15 @@ const Shopcategoryname = () => {
         else if(router.query.shopcategoryname==='UNSTITCHED'){
             setProductData(basics);
         }
+        else if(router.query.shopcategoryname==='1 Piece Suit'){
+          setProductData(pieceSuit1);
+      }
+      else if(router.query.shopcategoryname==='2 Piece Suit'){
+        setProductData(pieceSuit2);
+    }
+    else if(router.query.shopcategoryname==='3 Piece Suit'){
+      setProductData(pieceSuit3);
+  }
       },[router.query.shopcategoryname])
 
   return (

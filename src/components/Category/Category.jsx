@@ -1,5 +1,5 @@
-import categoryData from 'data/category/category';
 import { Categories } from './Categories/Categories';
+
 
 export const Category = ({productdata}) => {
   return (

@@ -10,12 +10,16 @@ import { useEffect } from 'react';
 const Category_name = () => {
     const router = useRouter();
     const [productdata,setProductData]=useState();
-    const {basics,NewArrivalProduct,formalEdit,readyToWear,winterWear,festivePret}=useProductContext();
+    const {basics,NewArrivalProduct,formalEdit,readyToWear,winterWear,festivePret,Sales,Unstitched}=useProductContext();
     console.log("productdata",productdata);
     const breadcrumbsData = [
         {
           label: 'Home',
           path: '/',
+        },
+        {
+          label: 'Shop',
+          path: '/shop',
         },
         {
           label: `${router.query.category_name}`,
@@ -28,7 +32,7 @@ const Category_name = () => {
             setProductData(basics);
         }
         else if(router.query.category_name==='SALE'){
-            setProductData(basics);
+            setProductData(Sales);
         }
         else if(router.query.category_name==='New Arrivals'){
             setProductData(NewArrivalProduct);
@@ -46,7 +50,7 @@ const Category_name = () => {
             setProductData(readyToWear);
         }
         else if(router.query.category_name==='Unstitched'){
-            setProductData(basics);
+            setProductData(Unstitched);
         }
       },[router.query.category_name])
   return (

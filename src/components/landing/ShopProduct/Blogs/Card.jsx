@@ -5,7 +5,7 @@ export const Card = ({ blog }) => {
   const { image_title,id,image_url, subtitle,buttonValue } = blog;
   console.log("image_url",image_url);
   return (
-    <div className='blog-item'>
+    <div className='blog-item' key={id+subtitle}>
         <a className='blog-item__img'>
           <img src={`https://meeraki.com/${image_url}`} className='js-img' alt='' />
         </a>

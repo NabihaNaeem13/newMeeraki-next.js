@@ -2,7 +2,7 @@ import { SigninSchema } from 'Schemas';
 import axios from 'axios';
 import { SocialLogin } from 'components/shared/SocialLogin/SocialLogin';
 import { useFormik } from 'formik';
-import router from 'next/router';
+import Router from 'next/router';
 import { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -39,7 +39,7 @@ export const Login = () => {
           localStorage.setItem('User',response.data.user.id)
           localStorage.setItem('user_name',response.data.user.name)
           setError(null);
-          router.push('/');
+          Router.push('/');
           formik.resetForm();
       }else{
         setError(response.data.message);
@@ -135,11 +135,11 @@ theme="light"/>
               <div className='login-form__bottom'>
                 <span>
                   No account?{' '}
-                  <a onClick={() => router.push('/registration')}>
+                  <a onClick={() => Router.push('/registration')}>
                     Register now
                   </a>
                 </span>
-                <a onClick={() => router.push('/forgot_password')}>Forgot password?</a>
+                <a onClick={() => Router.push('/forgot_password')}>Forgot password?</a>
               </div>
             </form>
           </div>

@@ -10,7 +10,7 @@ export const Blogs = ({ blogs }) => {
       <Grid container spacing={3}>
       {blogs.map((blog) => (
         <Grid item xs>
-        <Card key={blog.id} blog={blog} />
+        <Card blog={blog} />
         </Grid> 
         ))}
         </Grid>

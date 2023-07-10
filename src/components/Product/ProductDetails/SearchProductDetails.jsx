@@ -6,6 +6,7 @@ import ImageSlider from './ImageSlider';
 import axios from 'axios';
 import { FaRegHeart } from 'react-icons/fa';
 
+
 export const SearchProductDetails = () => {
   const router = useRouter();
   const { cart, setCart } = useContext(CartContext);

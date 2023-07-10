@@ -7,7 +7,7 @@ export const Blogs = ({ blogs }) => {
   
         <div className='blog-items'>
           {blogs.map((blog) => (
-            <Card key={blog.id} blog={blog} />
+            <Card blog={blog} />
           ))}
         </div>
   

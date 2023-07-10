@@ -13,7 +13,7 @@ const breadcrumbsData = [
 ];
 const CartPage = () => {
   return (
-    <PublicLayout breadcrumb={breadcrumbsData} breadcrumbTitle='Cart'  description="Renew your spirit, The perfect Detox solution 12 sessions of LPG Plus 6 sessions of fat freezing">
+    <PublicLayout breadcrumb={breadcrumbsData} breadcrumbTitle='Cart'>
       <Cart />
     </PublicLayout>
   );
