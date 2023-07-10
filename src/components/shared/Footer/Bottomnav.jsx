@@ -29,7 +29,7 @@ export const Bottomnav = () => {
       </Badge>}
       </Stack>
       </Link></li>
-      <li>{!user.value?<Link href="/login"><FaUserCircle className='icon'/></Link>:<a onClick={Logout}><RiLogoutCircleRLine className='icon'/></a>}</li>
+      <li>{!user.value?<Link href="/login"><FaUserCircle className='icon'/></Link>:<Link href="/profile"><FaUserCircle className='icon'/></Link>}</li>
       </ul>
     </div>
   )
