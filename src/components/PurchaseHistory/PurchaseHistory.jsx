@@ -7,7 +7,6 @@ import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { CartContext } from 'pages/_app';
 import { useContext } from 'react';
-import axios from 'axios';
 import { PurchaseHistoryModel } from './PurchaseHistoryModel';
 import { useProductContext } from 'Context/ProductContext';
 
@@ -17,7 +16,6 @@ export const PurchaseHistory = () => {
   const {Logout,name}=useContext(CartContext);
   const {PurchaseHistory,isPurchaseHistoryLoading}=useProductContext();
   const router = useRouter();
-
 
   if(isPurchaseHistoryLoading){
     return(

@@ -1,5 +1,5 @@
 import React from 'react'
-import {OrderConfirmCheckout} from "../components/Checkout/CheckoutSteps/orderConfirmCheckout";
+import {OrderConfirmCheckout} from "../components/OrderConfirm/OrderConfirmCheckout";
 import { PublicLayout } from 'layout/PublicLayout';
 
 const breadcrumbsData = [

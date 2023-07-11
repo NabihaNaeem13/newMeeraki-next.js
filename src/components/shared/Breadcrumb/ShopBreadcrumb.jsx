@@ -10,7 +10,6 @@ export const ShopBreadcrumb = ({ breadcrumb, title, description }) => {
       {/* <!-- BEGIN DETAIL MAIN BLOCK --> */}
        <div className='row-breadcrumb'>
         <div className='column-breadcrumb'>
-       <img src="/DermaestheticsAssests/5 Shop/asdas.png"/>
         </div>
         <div className='column-breadcrumb'>
         <h1 className='column-breadcrumb-title'>{title}</h1>
@@ -38,7 +37,6 @@ export const ShopBreadcrumb = ({ breadcrumb, title, description }) => {
             {description && <span className='error-descr column-breadcrumb-description'>{description}</span>}
         </div>
         <div className='column-breadcrumb'>
-        <img src="/DermaestheticsAssests/5 Shop/Untitled.png" style={{right:"0"}}/>
         </div>
        </div>
       {/* <!-- DETAIL MAIN BLOCK EOF   --> */}

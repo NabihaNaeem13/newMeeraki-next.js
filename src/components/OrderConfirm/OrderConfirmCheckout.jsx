@@ -2,9 +2,6 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { useEffect } from 'react';
 import {FiCheckCircle} from "react-icons/fi";
-import { CheckoutStep3 } from './CheckoutStep3';
-import { CheckoutOrders } from '../CheckoutOrder/CheckoutOrders';
-import { Card } from '../CheckoutOrder/Card/Card';
 
 const detailBlocks = [
   {
@@ -125,19 +122,19 @@ console.log('searchedProduct',searchedProduct,'purchaseProduct',purchaseProduct)
                                         <table className="table">
                                             <tbody><tr>
                                                 <td className="w-50 fw-600">Order Code:</td>
-                                                <td>20230622-17061393</td>
+                                                <td>{searchedProduct.code && searchedProduct.code}</td>
                                             </tr>
                                             <tr>
                                                 <td className="w-50 fw-600">Name:</td>
-                                                <td>MRK-220406</td>
+                                                <td>{searchedProduct.shipping_address && searchedProduct.shipping_address.name}</td>
                                             </tr>
                                             <tr>
                                                 <td className="w-50 fw-600">Email:</td>
-                                                <td>mahwish11ali@gmail.com</td>
+                                                <td>{searchedProduct.shipping_address && searchedProduct.shipping_address.email}</td>
                                             </tr>
                                             <tr>
                                                 <td className="w-50 fw-600">Shipping Address:</td>
-                                                <td>zhxbgfkfjdaksdxbcfdb, city 1, country 1</td>
+                                                <td>{searchedProduct.shipping_address && searchedProduct.shipping_address.address}, {searchedProduct.shipping_address && searchedProduct.shipping_address.city}, {searchedProduct.shipping_address && searchedProduct.shipping_address.country}</td>
                                             </tr>
                                         </tbody></table>
                                     </div>
@@ -145,15 +142,15 @@ console.log('searchedProduct',searchedProduct,'purchaseProduct',purchaseProduct)
                                         <table className="table">
                                             <tbody><tr>
                                                 <td className="w-50 fw-600">Order Date:</td>
-                                                <td>22-06-2023 17:06 PM</td>
+                                                <td>{searchedProduct.date && searchedProduct.date}</td>
                                             </tr>
                                             <tr>
                                                 <td className="w-50 fw-600">Order Status:</td>
-                                                <td>Pending</td>
+                                                <td>{searchedProduct.delivery_status && searchedProduct.delivery_status}</td>
                                             </tr>
                                             <tr>
                                                 <td className="w-50 fw-600">Total order amount:</td>
-                                                <td>PKR3,850.00</td>
+                                                <td>{searchedProduct.grand_total && searchedProduct.grand_total}</td>
                                             </tr>
                                             <tr>
                                                 <td className="w-50 fw-600">Shipping:</td>
@@ -161,7 +158,7 @@ console.log('searchedProduct',searchedProduct,'purchaseProduct',purchaseProduct)
                                             </tr>
                                             <tr>
                                                 <td className="w-50 fw-600">Payment method:</td>
-                                                <td>Cash on delivery</td>
+                                                <td>{searchedProduct.payment_type && searchedProduct.payment_type}</td>
                                             </tr>
                                         </tbody></table>
                                     </div>
@@ -218,7 +215,7 @@ console.log('searchedProduct',searchedProduct,'purchaseProduct',purchaseProduct)
                                                 <tr>
                                                     <th>Subtotal</th>
                                                     <td className="text-right">
-                                                        <span className="fw-600">{total}</span>
+                                                        <span className="fw-600">{searchedProduct.grand_total && searchedProduct.grand_total}</span>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -242,7 +239,7 @@ console.log('searchedProduct',searchedProduct,'purchaseProduct',purchaseProduct)
                                                 <tr>
                                                     <th><span className="fw-600">TOTAL</span></th>
                                                     <td className="text-right">
-                                                        <strong><span>{total}</span></strong>
+                                                        <strong><span>{searchedProduct.grand_total && searchedProduct.grand_total}</span></strong>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -258,62 +255,6 @@ console.log('searchedProduct',searchedProduct,'purchaseProduct',purchaseProduct)
     </section>
                   </div>
 
-    <div className='wrapper' style={{marginTop:'5rem'}}>
-          <div className='checkout-content'>
-          <div className='checkout-purchase checkout-form'>
-        <h4>
-          Meeraki thanks
-          <br />
-          you for your purchase!
-        </h4>
-        <p>
-        {ordermsg.message && ordermsg.message}
-        </p>
-        <ul className='checkout-purchase__list'>
-          <li>
-            <span>Order number</span>{ordermsg.code && ordermsg.code}
-          </li>
-          <li>
-            <span>Order status</span>Awaiting payment
-          </li>
-          <li>
-            <span>Reserved for</span>22.09.2020
-          </li>
-          <li>
-            <span>Expected loading date</span>20.09.2020
-          </li>
-        </ul>
-      </div>
-          <div className='checkout-info'>
-          <div className='checkout-order'>
-             <h5>Your Order</h5>
-                {purchaseProduct.map((order) => (
-                    console.log('order',order)
-                 ))}
-            </div>
-            <div className='cart-bottom__total'>
-        <div className='cart-bottom__total-goods'>
-          Goods on
-          <span>PKR{total.toFixed(2)}</span>
-        </div>
-        <div className='cart-bottom__total-promo'>
-          Discount on promo code
-          <span>No</span>
-        </div>
-        <div className='cart-bottom__total-delivery'>
-          Delivery{' '}
-          <span className='cart-bottom__total-delivery-date'>
-            (Aug 28,2020 at 11:30)
-          </span>
-          <span>PKR200</span>
-        </div>
-        <div className='cart-bottom__total-num'>
-          total:
-          <span>{(total + 200).toFixed(2)}</span>
-        </div>
-      </div>
-            </div>
-          </div></div>
     
     {/* <!-- CHECKOUT EOF   <table className="table">
                                             <tbody><tr>
